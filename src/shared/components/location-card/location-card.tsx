@@ -5,22 +5,18 @@ import {
   Text,
 } from '@effable/react';
 
-import { Location } from '../location';
-
 export interface LocationCardProps {
   /**
    * The content
    */
+  children: React.ReactNode;
   isActive?: boolean;
-  location: string;
-  date: Date;
 }
 
 export const LocationCard = (props: LocationCardProps): JSX.Element => {
   const {
+    children,
     isActive,
-    location,
-    date,
   } = props;
 
   return (
@@ -32,8 +28,11 @@ export const LocationCard = (props: LocationCardProps): JSX.Element => {
       padding="4x"
       flexDirection="column"
       backgroundColor={isActive ? 'accent.accent3' : 'neutral.neutral3'}
+      width="100%"
+      minWidth="300px"
+      height="100%"
     >
-      <Location location="Moscow" />
+      {children}
     </Box>
   );
 };

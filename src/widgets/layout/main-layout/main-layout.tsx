@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Box } from '@effable/react';
 
-import { Header } from '@/shared/components/header';
+import { Header } from '../../../shared/components/header';
 
 export interface MainLayoutProps {
   children: React.ReactNode;
