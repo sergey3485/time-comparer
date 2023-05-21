@@ -22,8 +22,6 @@ export const Input = (props: InputProps): JSX.Element => {
     changeValue,
   } = props;
 
-  const str = value.length >= 3 ? value : '';
-  const city = WorldCities.getAllByName(str);
   return (
     <Box
       display="flex"
