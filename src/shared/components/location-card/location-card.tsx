@@ -29,7 +29,7 @@ export const LocationCard = (props: LocationCardProps): JSX.Element => {
       flexDirection="column"
       backgroundColor={isActive ? 'accent.accent3' : 'neutral.neutral3'}
       width="100%"
-      minWidth="300px"
+      minWidth="260px"
       height="100%"
     >
       {children}

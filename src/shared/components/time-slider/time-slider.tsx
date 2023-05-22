@@ -15,7 +15,11 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
   } = props;
 
   return (
-    <S.SliderRoot>
+    <S.SliderRoot
+      step={900}
+      max={86400}
+      min={0}
+    >
       <S.SliderTrack>
         <S.SliderRange />
       </S.SliderTrack>

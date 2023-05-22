@@ -7,39 +7,56 @@ import {
   Stack,
 } from '@effable/react';
 
+import { format, formatISO } from 'date-fns';
+
+import { useUnit } from 'effector-react';
+
+import { getTimezoneOffset, utcToZonedTime } from 'date-fns-tz';
+
+import { City } from 'worldcities/lib/city';
+
+import {} from '@/features/logic/locations.model';
+import {
+  $timeVariant,
+  $time,
+} from '@/features/logic/time.model';
+
 export interface LocationProps {
   /**
    * The content
    */
-  location: string;
-  time?: Date;
+  location: City;
 }
 
 export const Location = (props: LocationProps): JSX.Element => {
   const {
     location,
-    time,
   } = props;
 
-  const dateFormat = Intl.DateTimeFormat('en-GB', {
-    day: 'numeric',
-    month: 'short',
+  const {
+    timeVariant,
+    time,
+  } = useUnit({
+    timeVariant: $timeVariant,
+    time: $time,
   });
 
-  const currentDay = dateFormat.format(new Date());
+  const timeZone = getTimezoneOffset(location.timezone) / (1000 * 60 * 60);
 
-  console.log(currentDay);
+  const currentDay = utcToZonedTime(time, location.timezone);
+
+  const day = format(currentDay, 'd MMMM');
 
   return (
     <Stack
       direction="column"
       space="2x"
     >
-      <Heading variant="h4" color="text.primary">{location}</Heading>
+      <Heading variant="h4" color="text.primary">{location.name}</Heading>
 
-      <Text variant="s" color="text.secondary" textAlign="start">1111</Text>
+      <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
 
-      <Text variant="s" color="text.secondary" textAlign="start">{currentDay}</Text>
+      <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>
     </Stack>
   );
 };

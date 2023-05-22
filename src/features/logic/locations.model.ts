@@ -8,7 +8,16 @@ import {
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 
-export const $locations = createStore<City[]>([]);
+const Moscow = worldCities.getByName('Moscow') as City;
+console.log(Moscow);
+
+const Praga = worldCities.getByName('prague') as City;
+
+const Toki = worldCities.getByName('toki') as City;
+
+console.log(Praga);
+
+export const $locations = createStore<City[]>([Moscow, Praga, Toki]);
 
 export const $locationVariants = createStore<City[]>([]);
 
