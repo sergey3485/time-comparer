@@ -20,7 +20,7 @@ export const $locationVariants = createStore<City[]>([]);
 
 export const $inputValue = createStore<string>('');
 
-export const $currentLocation = createStore<City>({} as City);
+export const $selectedLocation = createStore<City>(Moscow);
 
 export const changeInputValue = createEvent<string>();
 
@@ -28,7 +28,7 @@ export const addLocation = createEvent<City>();
 
 export const deleteCity = createEvent<City>();
 
-export const changeCurrentLocation = createEvent<City>();
+export const changeSelectedLocation = createEvent<City>();
 
 const getCitiesByNameFx = createEffect((inputValue: string) => {
   const loc = worldCities.getAllByName(inputValue);
@@ -76,6 +76,6 @@ sample({
 });
 
 sample({
-  clock: changeCurrentLocation,
-  target: $currentLocation,
+  clock: changeSelectedLocation,
+  target: $selectedLocation,
 });

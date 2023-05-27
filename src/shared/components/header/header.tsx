@@ -49,13 +49,13 @@ export const Header = (): JSX.Element => {
             space="2x"
           >
             <Button
-              onClick={() => changeTimeVariantOnClick('K:m aaa')}
+              onClick={() => changeTimeVariantOnClick('KK:mm aaa')}
             >
               12
             </Button>
 
             <Button
-              onClick={() => changeTimeVariantOnClick('HH:m')}
+              onClick={() => changeTimeVariantOnClick('HH:mm')}
             >
               24
             </Button>

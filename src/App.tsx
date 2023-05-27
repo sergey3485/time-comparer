@@ -38,11 +38,10 @@ const App = () => {
         }}
       >
         {locations.map((item) => (
-          <LocationCard key={item.name}>
-            <Location
-              location={item}
-            />
-          </LocationCard>
+          <Location
+            location={item}
+            key={item.name}
+          />
         ))}
         <Button
           onClick={addNew}

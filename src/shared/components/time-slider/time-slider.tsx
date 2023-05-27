@@ -24,15 +24,17 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
     changeSliderValue: changeTimeBySlider,
   });
 
-  // const timeDif = timeValue.getTime() - timeValue.setHours(0, 0, 0, 0);
+  const newDate = new Date(timeValue).setHours(0, 0, 0, 0);
+
+  const timeDif = timeValue.getTime() - newDate;
 
   return (
     <S.SliderRoot
-      step={90000}
-      max={8640000}
+      step={900000}
+      max={86400000 - 900000}
       min={0}
       onValueChange={(event) => changeSliderValue(event[0])}
-      // value={[timeDif]}
+      value={[timeDif]}
     >
       <S.SliderTrack>
         <S.SliderRange />

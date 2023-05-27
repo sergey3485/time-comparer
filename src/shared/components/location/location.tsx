@@ -15,7 +15,7 @@ import { getTimezoneOffset, utcToZonedTime } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
-import {} from '@/features/logic/locations.model';
+import { $selectedLocation, changeSelectedLocation } from '@/features/logic/locations.model';
 import {
   $timeVariant,
   $time,
@@ -37,12 +37,18 @@ export const Location = (props: LocationProps): JSX.Element => {
   const {
     timeVariant,
     time,
+    selectedLoc,
+    selectLoc,
   } = useUnit({
     timeVariant: $timeVariant,
     time: $time,
+    selectedLoc: $selectedLocation,
+    selectLoc: changeSelectedLocation,
   });
 
   const timeZone = getTimezoneOffset(location.timezone) / (1000 * 60 * 60);
+
+  const selectedLocTZ = getTimezoneOffset(selectedLoc.timezone) / (1000 * 60 * 60);
 
   const currentDay = utcToZonedTime(time, location.timezone);
 
@@ -50,20 +56,55 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const currentTime = format(currentDay, timeVariant);
 
+  const getTzDif = () => {
+    const dif = timeZone - selectedLocTZ;
+
+    console.log('timeZone', timeZone);
+    console.log('selected', selectedLocTZ);
+    console.log('dif', dif);
+    console.log(selectedLocTZ - timeZone);
+    console.log(timeZone - selectedLocTZ);
+
+    const result = selectedLoc === location ? null : dif;
+    return result;
+  };
+
+  const tzDif = getTzDif();
+
   return (
-    <Stack
-      direction="column"
-      space="2x"
+    <Box
+      display="flex"
+      borderColor="neutral.neutral7"
+      borderRadius="4x"
+      border="1x solid"
+      padding="4x"
+      flexDirection="column"
+      width="100%"
+      minWidth="260px"
+      height="100%"
+      onClick={() => selectLoc(location)}
+      backgroundColor={selectedLoc === location ? 'neutral.neutral5' : 'neutral.neutral3'}
     >
-      <Heading variant="h4" color="text.primary">{location.name}</Heading>
+      <Stack
+        direction="column"
+        space="2x"
+      >
+        <Heading variant="h4" color="text.primary">{location.name}</Heading>
 
-      <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+        >
+          <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
+          {tzDif && <Text variant="s" color={tzDif > 0 ? 'success.success9' : 'error.error9'} textAlign="start">{tzDif > 0 ? `${tzDif}` : `${tzDif}`} H</Text>}
+        </Box>
 
-      <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>
+        <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>
 
-      <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
+        <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
 
-      <TimeSlider timeValue={currentDay} />
-    </Stack>
+        <TimeSlider timeValue={currentDay} />
+      </Stack>
+    </Box>
   );
 };
