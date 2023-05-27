@@ -9,13 +9,10 @@ import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 
 const Moscow = worldCities.getByName('Moscow') as City;
-console.log(Moscow);
 
 const Praga = worldCities.getByName('prague') as City;
 
 const Toki = worldCities.getByName('toki') as City;
-
-console.log(Praga);
 
 export const $locations = createStore<City[]>([Moscow, Praga, Toki]);
 
@@ -23,11 +20,15 @@ export const $locationVariants = createStore<City[]>([]);
 
 export const $inputValue = createStore<string>('');
 
+export const $currentLocation = createStore<City>({} as City);
+
 export const changeInputValue = createEvent<string>();
 
 export const addLocation = createEvent<City>();
 
 export const deleteCity = createEvent<City>();
+
+export const changeCurrentLocation = createEvent<City>();
 
 const getCitiesByNameFx = createEffect((inputValue: string) => {
   const loc = worldCities.getAllByName(inputValue);
@@ -72,4 +73,9 @@ sample({
 sample({
   clock: deleteCityFx.doneData,
   target: $locations,
+});
+
+sample({
+  clock: changeCurrentLocation,
+  target: $currentLocation,
 });

@@ -55,7 +55,7 @@ export const Header = (): JSX.Element => {
             </Button>
 
             <Button
-              onClick={() => changeTimeVariantOnClick('H:m')}
+              onClick={() => changeTimeVariantOnClick('HH:m')}
             >
               24
             </Button>

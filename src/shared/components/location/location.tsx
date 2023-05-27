@@ -7,7 +7,7 @@ import {
   Stack,
 } from '@effable/react';
 
-import { format, formatISO } from 'date-fns';
+import { format } from 'date-fns';
 
 import { useUnit } from 'effector-react';
 
@@ -20,6 +20,7 @@ import {
   $timeVariant,
   $time,
 } from '@/features/logic/time.model';
+import { TimeSlider } from '@/shared/components/time-slider';
 
 export interface LocationProps {
   /**
@@ -45,7 +46,9 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const currentDay = utcToZonedTime(time, location.timezone);
 
-  const day = format(currentDay, 'd MMMM');
+  const day = format(currentDay, 'dd MMMM');
+
+  const currentTime = format(currentDay, timeVariant);
 
   return (
     <Stack
@@ -57,6 +60,10 @@ export const Location = (props: LocationProps): JSX.Element => {
       <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
 
       <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>
+
+      <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
+
+      <TimeSlider timeValue={currentDay} />
     </Stack>
   );
 };

@@ -5,24 +5,40 @@ import {
   createEffect,
 } from 'effector';
 
-import { City } from 'worldcities/lib/city';
+import { format } from 'date-fns';
 
-export const $currentLocation = createStore<City>({} as City);
+import { City } from 'worldcities/lib/city';
 
 export const $time = createStore<Date>(new Date());
 
-export const $timeVariant = createStore<'K:m aaa' | 'H:m'>('H:m');
+export const $timeVariant = createStore<'K:m aaa' | 'HH:m'>('HH:m');
 
-export const changeCurrentLocation = createEvent<City>();
+export const changeTimeVariant = createEvent<'K:m aaa' | 'HH:m'>();
 
-export const changeTimeVariant = createEvent<'K:m aaa' | 'H:m'>();
+export const changeTimeBySlider = createEvent<number>();
 
-sample({
-  clock: changeCurrentLocation,
-  target: $currentLocation,
+const changeTimeBySliderFx = createEffect((date: Date, dif: number) => {
+  const timeInMil = +format(date, 'T');
+  console.log(timeInMil);
+  console.log(dif);
+  const newDate = new Date(dif + timeInMil);
+  console.log(newDate);
+  return date;
 });
 
 sample({
   clock: changeTimeVariant,
   target: $timeVariant,
 });
+
+sample({
+  clock: changeTimeBySlider,
+  source: $time,
+  fn: (date: Date, dif: number) => new Date(dif + +format(date, 'T')),
+  target: $time,
+});
+
+// sample({
+//   clock: changeTimeBySliderFx.doneData,
+//   target: $time,
+// });
