@@ -11,7 +11,3 @@ export default {
 const Template: Story<TimeSliderProps> = (args) => <TimeSlider {...args} />;
 
 export const Basic = Template.bind({});
-
-Basic.args = {
-  children: 'TimeSlider',
-};

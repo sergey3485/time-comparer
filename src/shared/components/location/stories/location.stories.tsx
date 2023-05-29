@@ -11,7 +11,3 @@ export default {
 const Template: Story<LocationProps> = (args) => <Location {...args} />;
 
 export const Basic = Template.bind({});
-
-Basic.args = {
-  children: 'Location',
-};
