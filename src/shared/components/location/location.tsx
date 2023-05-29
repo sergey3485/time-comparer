@@ -58,13 +58,6 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const getTzDif = () => {
     const dif = timeZone - selectedLocTZ;
-
-    console.log('timeZone', timeZone);
-    console.log('selected', selectedLocTZ);
-    console.log('dif', dif);
-    console.log(selectedLocTZ - timeZone);
-    console.log(timeZone - selectedLocTZ);
-
     const result = selectedLoc === location ? null : dif;
     return result;
   };
@@ -82,7 +75,7 @@ export const Location = (props: LocationProps): JSX.Element => {
       width="100%"
       minWidth="260px"
       height="100%"
-      onClick={() => selectLoc(location)}
+      onPointerDown={() => selectLoc(location)}
       backgroundColor={selectedLoc === location ? 'neutral.neutral5' : 'neutral.neutral3'}
     >
       <Stack
