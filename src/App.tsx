@@ -3,27 +3,32 @@ import * as React from 'react';
 import { SimpleGrid, Button } from '@effable/react';
 import { useUnit } from 'effector-react';
 
-import { LocationCard } from './shared/components/location-card';
+import { LocationCard } from '@/shared/components/location-card';
+import { Input } from '@/shared/components/input';
 import { Location } from './shared/components/location';
 import { MainLayout } from './widgets/layout/main-layout';
 
 import {
   $locations,
+  changeInputValue,
+  createInput,
+  $isVisibleInput,
 } from '@/features/logic/locations.model';
+
 // import './App.css';
 
 const App = () => {
   const {
     locations,
+    showInput,
+    isVisible,
   } = useUnit({
     locations: $locations,
+    changeInput: changeInputValue,
+    showInput: createInput,
+    isVisible: $isVisibleInput,
   });
   const [items, setItems] = React.useState<number[]>([]);
-
-  const addNew = () => {
-    const newArr = [...items, items.length];
-    setItems(newArr);
-  };
 
   console.log(locations);
   return (
@@ -43,8 +48,10 @@ const App = () => {
             key={item.name}
           />
         ))}
+
+        {isVisible && <Input /> }
         <Button
-          onClick={addNew}
+          onClick={showInput}
         >
           add new
         </Button>

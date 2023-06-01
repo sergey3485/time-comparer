@@ -12,11 +12,15 @@ import { $selectedLocation } from './locations.model';
 
 export const $time = createStore<Date>(new Date());
 
+export const $currentTime = createStore(new Date());
+
 export const $timeVariant = createStore<'KK:mm aaa' | 'HH:mm'>('HH:mm');
 
 export const changeTimeVariant = createEvent<'KK:mm aaa' | 'HH:mm'>();
 
 export const changeTimeBySlider = createEvent<number>();
+
+export const changeCurrentTime = createEvent();
 
 const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc: City }) => {
   const hour = Math.trunc(data.dif / 3600000);

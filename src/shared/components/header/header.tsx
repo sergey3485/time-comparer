@@ -12,7 +12,7 @@ import {
 
 import {
   $timeVariant,
-  $time,
+  $currentTime,
   changeTimeVariant,
 } from '@/features/logic/time.model';
 
@@ -23,7 +23,7 @@ export const Header = (): JSX.Element => {
     changeTimeVariantOnClick,
   } = useUnit({
     timeVariant: $timeVariant,
-    time: $time,
+    time: $currentTime,
     changeTimeVariantOnClick: changeTimeVariant,
   });
 

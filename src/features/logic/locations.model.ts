@@ -30,13 +30,17 @@ export const deleteCity = createEvent<City>();
 
 export const changeSelectedLocation = createEvent<City>();
 
+export const $isVisibleInput = createStore<boolean>(false);
+
+export const createInput = createEvent();
+
 const getCitiesByNameFx = createEffect((inputValue: string) => {
-  const loc = worldCities.getAllByName(inputValue);
+  const loc = inputValue.length >= 3 ? worldCities.getAllByName(inputValue) : [];
   return loc;
 });
 
-const deleteCityFx = createEffect((allCities: City[], deletedCity: City) => {
-  const cities = allCities.filter((city) => city !== deletedCity);
+const deleteCityFx = createEffect((data: { allLocation: City[], deletedLocation: City }) => {
+  const cities = data.allLocation.filter((city) => city !== data.deletedLocation);
 
   return cities;
 });
@@ -48,7 +52,6 @@ sample({
 
 sample({
   clock: $inputValue,
-  filter: (inputValue) => inputValue.length >= 3,
   target: getCitiesByNameFx,
 });
 
@@ -60,6 +63,7 @@ sample({
 sample({
   clock: addLocation,
   source: $locations,
+  filter: (allLocation, newLocation) => !allLocation.includes(newLocation),
   fn: (allLocation, newLocation) => [...allLocation, newLocation],
   target: $locations,
 });
@@ -67,6 +71,10 @@ sample({
 sample({
   clock: deleteCity,
   source: $locations,
+  fn: (allLocation, deletedLocation) => ({
+    allLocation,
+    deletedLocation,
+  }),
   target: deleteCityFx,
 });
 
@@ -78,4 +86,35 @@ sample({
 sample({
   clock: changeSelectedLocation,
   target: $selectedLocation,
+});
+
+sample({
+  clock: addLocation,
+  fn: () => '',
+  target: $inputValue,
+});
+
+sample({
+  clock: addLocation,
+  fn: () => [],
+  target: $locationVariants,
+});
+
+sample({
+  clock: deleteCity,
+  source: $locations,
+  fn: (allLocation) => allLocation[0],
+  target: $selectedLocation,
+});
+
+sample({
+  clock: createInput,
+  fn: () => true,
+  target: $isVisibleInput,
+});
+
+sample({
+  clock: addLocation,
+  fn: () => false,
+  target: $isVisibleInput,
 });

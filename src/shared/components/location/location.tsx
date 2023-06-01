@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { RiCloseLine } from 'react-icons/ri';
 
 import {
   Box,
   Heading,
   Text,
   Stack,
+  ActionButton,
 } from '@effable/react';
 
 import { format } from 'date-fns';
@@ -15,7 +17,7 @@ import { getTimezoneOffset, utcToZonedTime } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
-import { $selectedLocation, changeSelectedLocation } from '@/features/logic/locations.model';
+import { $selectedLocation, changeSelectedLocation, deleteCity } from '@/features/logic/locations.model';
 import {
   $timeVariant,
   $time,
@@ -39,11 +41,13 @@ export const Location = (props: LocationProps): JSX.Element => {
     time,
     selectedLoc,
     selectLoc,
+    deleteLocation,
   } = useUnit({
     timeVariant: $timeVariant,
     time: $time,
     selectedLoc: $selectedLocation,
     selectLoc: changeSelectedLocation,
+    deleteLocation: deleteCity,
   });
 
   const timeZone = getTimezoneOffset(location.timezone) / (1000 * 60 * 60);
@@ -74,7 +78,7 @@ export const Location = (props: LocationProps): JSX.Element => {
       flexDirection="column"
       width="100%"
       minWidth="260px"
-      height="100%"
+      height="158px"
       onPointerDown={() => selectLoc(location)}
       backgroundColor={selectedLoc === location ? 'neutral.neutral5' : 'neutral.neutral3'}
     >
@@ -82,7 +86,17 @@ export const Location = (props: LocationProps): JSX.Element => {
         direction="column"
         space="2x"
       >
-        <Heading variant="h4" color="text.primary">{location.name}</Heading>
+        <Box
+          display="flex"
+          width="100%"
+          justifyContent="space-between"
+        >
+          <Heading variant="h4" color="text.primary">{location.name}</Heading>
+
+          <ActionButton component="button" label="close" onClick={() => deleteLocation(location)}>
+            <RiCloseLine />
+          </ActionButton>
+        </Box>
 
         <Box
           display="flex"

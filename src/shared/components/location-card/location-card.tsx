@@ -23,11 +23,11 @@ export const LocationCard = (props: LocationCardProps): JSX.Element => {
       borderColor="neutral.neutral7"
       borderRadius="4x"
       border="1x solid"
-      padding="4x"
       flexDirection="column"
       width="100%"
       minWidth="260px"
       height="100%"
+      component="form"
     >
       {children}
     </Box>
