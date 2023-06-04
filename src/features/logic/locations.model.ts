@@ -8,19 +8,17 @@ import {
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 
-const Moscow = worldCities.getByName('Moscow') as City;
+export const moscow = worldCities.getByName('Moscow') as City;
+export const prague = worldCities.getByName('prague') as City;
+export const toki = worldCities.getByName('toki') as City;
 
-const Praga = worldCities.getByName('prague') as City;
-
-const Toki = worldCities.getByName('toki') as City;
-
-export const $locations = createStore<City[]>([Moscow, Praga, Toki]);
+export const $locations = createStore<City[]>([moscow, prague, toki]);
 
 export const $locationVariants = createStore<City[]>([]);
 
 export const $inputValue = createStore<string>('');
 
-export const $selectedLocation = createStore<City>(Moscow);
+export const $selectedLocation = createStore<City | null>(null);
 
 export const changeInputValue = createEvent<string>();
 
@@ -37,12 +35,6 @@ export const createInput = createEvent();
 const getCitiesByNameFx = createEffect((inputValue: string) => {
   const loc = inputValue.length >= 3 ? worldCities.getAllByName(inputValue) : [];
   return loc;
-});
-
-const deleteCityFx = createEffect((data: { allLocation: City[], deletedLocation: City }) => {
-  const cities = data.allLocation.filter((city) => city !== data.deletedLocation);
-
-  return cities;
 });
 
 sample({
@@ -69,17 +61,17 @@ sample({
 });
 
 sample({
-  clock: deleteCity,
-  source: $locations,
-  fn: (allLocation, deletedLocation) => ({
-    allLocation,
-    deletedLocation,
-  }),
-  target: deleteCityFx,
+  clock: addLocation,
+  source: $selectedLocation,
+  filter: (selectedLocation) => selectedLocation === null,
+  fn: (selectedLocation, newLocation) => newLocation,
+  target: $selectedLocation,
 });
 
 sample({
-  clock: deleteCityFx.doneData,
+  clock: deleteCity,
+  source: $locations,
+  fn: (allLocation, deletedLocation) => allLocation.filter((city) => (city.latitude !== deletedLocation.latitude) && (city.longitude !== deletedLocation.longitude)),
   target: $locations,
 });
 

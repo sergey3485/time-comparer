@@ -9,13 +9,15 @@ export interface LocationCardProps {
   /**
    * The content
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-export const LocationCard = (props: LocationCardProps): JSX.Element => {
+export const LocationCard = (props: LocationCardProps) => {
   const {
     children,
   } = props;
+
+  if (!children) return null;
 
   return (
     <Box
