@@ -32,6 +32,7 @@ export default defineConfig({
         '**/*.stories.tsx',
         '**/*.styled.ts',
         'src/**/*.test.{ts,tsx}',
+        'src/stories',
       ],
     },
   },

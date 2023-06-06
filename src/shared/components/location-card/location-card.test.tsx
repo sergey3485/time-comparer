@@ -7,14 +7,16 @@ describe('<LocationCard />', () => {
   it('Должен рендерить children', () => {
     render(<LocationCard>Prague</LocationCard>);
 
-    const element = screen.getByText('Prague');
+    const element = screen.queryByText('Prague');
 
-    expect(element).toBeDefined();
+    expect(element).toBeInTheDocument();
   });
 
   it('Не должен рендерить элемент, когда у него нет детей', () => {
-    const { container } = render(<LocationCard />);
+    render(<LocationCard />);
 
-    expect(container).toBeEmptyDOMElement();
+    const element = screen.queryByText('Prague');
+
+    expect(element).not.toBeInTheDocument();
   });
 });

@@ -11,23 +11,20 @@ import {
 } from '@effable/react';
 
 import {
-  $timeVariant,
+  $timeFormat,
   $currentTime,
-  changeTimeVariant,
+  changeTimeFormat,
 } from '@/features/logic/time.model';
+
+import { TimeIndicator } from '@/features/time-indicator';
 
 export const Header = (): JSX.Element => {
   const {
-    timeVariant,
-    time,
-    changeTimeVariantOnClick,
+    changeTimeFormatOnClick,
   } = useUnit({
-    timeVariant: $timeVariant,
-    time: $currentTime,
-    changeTimeVariantOnClick: changeTimeVariant,
+    changeTimeFormatOnClick: changeTimeFormat,
   });
 
-  const currentTime = format(time, timeVariant);
   return (
     <Box
       display="flex"
@@ -41,21 +38,20 @@ export const Header = (): JSX.Element => {
           space="4x"
           alignItems="center"
         >
-          <Box>
-            {currentTime}
-          </Box>
+
+          <TimeIndicator />
 
           <Stack
             space="2x"
           >
             <Button
-              onClick={() => changeTimeVariantOnClick('KK:mm aaa')}
+              onClick={() => changeTimeFormatOnClick('hh:mm aaa')}
             >
               12
             </Button>
 
             <Button
-              onClick={() => changeTimeVariantOnClick('HH:mm')}
+              onClick={() => changeTimeFormatOnClick('HH:mm')}
             >
               24
             </Button>

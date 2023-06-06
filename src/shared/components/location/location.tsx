@@ -19,7 +19,7 @@ import { City } from 'worldcities/lib/city';
 
 import { $selectedLocation, changeSelectedLocation, deleteCity } from '@/features/logic/locations.model';
 import {
-  $timeVariant,
+  $timeFormat,
   $time,
 } from '@/features/logic/time.model';
 import { TimeSlider } from '@/shared/components/time-slider';
@@ -43,7 +43,7 @@ export const Location = (props: LocationProps): JSX.Element => {
     selectLoc,
     deleteLocation,
   } = useUnit({
-    timeVariant: $timeVariant,
+    timeVariant: $timeFormat,
     time: $time,
     selectedLoc: $selectedLocation,
     selectLoc: changeSelectedLocation,
@@ -52,7 +52,7 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const timeZone = getTimezoneOffset(location.timezone) / (1000 * 60 * 60);
 
-  const selectedLocTZ = getTimezoneOffset(selectedLoc.timezone) / (1000 * 60 * 60);
+  const selectedLocTZ = getTimezoneOffset(selectedLoc?.timezone as string) / (1000 * 60 * 60);
 
   const currentDay = utcToZonedTime(time, location.timezone);
 

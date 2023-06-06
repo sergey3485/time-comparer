@@ -15,13 +15,13 @@ export const $time = createStore<Date>(new Date());
 
 export const $currentTime = createStore(new Date());
 
-export const $timeVariant = createStore<'KK:mm aaa' | 'HH:mm'>('HH:mm');
+export const $timeFormat = createStore<'hh:mm aaa' | 'HH:mm'>('HH:mm');
 
-export const changeTimeVariant = createEvent<'KK:mm aaa' | 'HH:mm'>();
+export const changeTimeFormat = createEvent<'hh:mm aaa' | 'HH:mm'>();
 
 export const changeTimeBySlider = createEvent<number>();
 
-export const changeCurrentTime = createEvent();
+// export const changeCurrentTime = createEvent();
 
 const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc: City | null }) => {
   const hour = Math.trunc(data.dif / 3600000);
@@ -35,7 +35,7 @@ const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc:
    */
   const localDate = utcToZonedTime(data.date, data.loc?.timezone as string).getTime();
 
-  const newDate = new Date(localDate).setHours(hour, min, sec, milS);
+  const newDate = utcToZonedTime(new Date(localDate).setHours(hour, min, sec, milS), data.loc?.timezone as string).getTime();
 
   const timeDif = newDate - localDate;
 
@@ -45,8 +45,8 @@ const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc:
 });
 
 sample({
-  clock: changeTimeVariant,
-  target: $timeVariant,
+  clock: changeTimeFormat,
+  target: $timeFormat,
 });
 
 sample({

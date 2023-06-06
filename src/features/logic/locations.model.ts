@@ -18,7 +18,7 @@ export const $locationVariants = createStore<City[]>([]);
 
 export const $inputValue = createStore<string>('');
 
-export const $selectedLocation = createStore<City | null>(null);
+export const $selectedLocation = createStore<City | null>(moscow);
 
 export const changeInputValue = createEvent<string>();
 

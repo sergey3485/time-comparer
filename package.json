@@ -27,6 +27,7 @@
     "effector-storage": "5.0.1",
     "eslint-config-react-app": "^7.0.1",
     "framer-motion": "^10.12.16",
+    "patronum": "^1.18.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
