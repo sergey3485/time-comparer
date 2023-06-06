@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {
   Box,
-  Heading,
-  Text,
-} from '@effable/react';
+} from '@chakra-ui/react';
+
 import { useUnit } from 'effector-react';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -34,9 +33,9 @@ export const Input = (): JSX.Element => {
     <Box
       display="flex"
       borderColor="neutral.neutral7"
-      borderRadius="4x"
+      borderRadius="4px"
       border="1px solid"
-      padding="1x"
+      padding="1px"
       flexDirection="column"
       width="100%"
       minWidth="260px"
@@ -55,7 +54,7 @@ export const Input = (): JSX.Element => {
             display="flex"
             key={uuidv4()}
             width="100%"
-            padding="1x"
+            padding="1px"
             borderColor="neutral.neutral3"
             borderBottom="1px solid"
             onClick={() => addNewLocation(loc)}

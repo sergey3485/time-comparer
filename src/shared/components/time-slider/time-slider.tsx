@@ -1,21 +1,28 @@
 import * as React from 'react';
 import { useUnit } from 'effector-react';
 import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@chakra-ui/react';
+import { City } from 'worldcities/lib/city';
+import {
   changeTimeBySlider,
 } from '@/features/logic/time.model';
-
-import * as S from './time-slider.styled';
 
 export interface TimeSliderProps {
   /**
    * The content
    */
   timeValue: Date;
+  changeLocation: () => void;
 }
 
 export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
   const {
     timeValue,
+    changeLocation,
   } = props;
 
   const {
@@ -29,18 +36,19 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
   const timeDif = timeValue.getTime() - newDate;
 
   return (
-    <S.SliderRoot
+    <Slider
       step={900000}
       max={86400000 - 900000}
       min={0}
-      onValueChange={(event) => changeSliderValue(event[0])}
-      value={[timeDif]}
+      onChange={(value) => changeSliderValue(value)}
+      onChangeStart={changeLocation}
+      value={timeDif}
     >
-      <S.SliderTrack>
-        <S.SliderRange />
-      </S.SliderTrack>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
 
-      <S.SliderThumb />
-    </S.SliderRoot>
+      <SliderThumb />
+    </Slider>
   );
 };

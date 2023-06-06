@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import { SimpleGrid, Button } from '@effable/react';
+import { SimpleGrid, Button } from '@chakra-ui/react';
 import { useUnit } from 'effector-react';
 
-import { LocationCard } from '@/shared/components/location-card';
 import { Input } from '@/shared/components/input';
 import { Location } from './shared/components/location';
 import { MainLayout } from './widgets/layout/main-layout';
@@ -34,13 +33,12 @@ const App = () => {
   return (
     <MainLayout>
       <SimpleGrid
-        space="3x"
-        cols={{
-          base: 1,
-          tablet: 2,
-          laptop: 3,
-          desktop: 5,
-        }}
+        spacing="12px"
+        columns={[
+          1,
+          3,
+          5,
+        ]}
       >
         {locations.map((item) => (
           <Location
@@ -52,6 +50,8 @@ const App = () => {
         {isVisible && <Input /> }
         <Button
           onClick={showInput}
+          variant="outline"
+          size="lg"
         >
           add new
         </Button>

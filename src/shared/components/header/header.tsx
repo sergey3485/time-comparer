@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { format } from 'date-fns';
 import { useUnit } from 'effector-react';
-import {
-  ActionButton,
-  Box,
-  Button,
-  ButtonBase,
-  Stack,
-  Text,
-} from '@effable/react';
+// import {
+//   Box,
+//   Button,
+//   Stack,
+// } from '@effable/react';
 
 import {
-  $timeFormat,
-  $currentTime,
+  Box,
+  Button,
+  Stack,
+} from '@chakra-ui/react';
+
+import {
   changeTimeFormat,
 } from '@/features/logic/time.model';
 
@@ -35,14 +36,16 @@ export const Header = (): JSX.Element => {
         marginLeft="auto"
       >
         <Stack
-          space="4x"
+          spacing="4px"
           alignItems="center"
+          direction="row"
         >
 
           <TimeIndicator />
 
           <Stack
-            space="2x"
+            spacing="2px"
+            direction="row"
           >
             <Button
               onClick={() => changeTimeFormatOnClick('hh:mm aaa')}

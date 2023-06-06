@@ -6,8 +6,8 @@ import {
   Heading,
   Text,
   Stack,
-  ActionButton,
-} from '@effable/react';
+  IconButton,
+} from '@chakra-ui/react';
 
 import { format } from 'date-fns';
 
@@ -72,9 +72,9 @@ export const Location = (props: LocationProps): JSX.Element => {
     <Box
       display="flex"
       borderColor="neutral.neutral7"
-      borderRadius="4x"
-      border="1x solid"
-      padding="4x"
+      borderRadius="4"
+      border="1px solid"
+      padding="4px"
       flexDirection="column"
       width="100%"
       minWidth="260px"
@@ -84,7 +84,7 @@ export const Location = (props: LocationProps): JSX.Element => {
     >
       <Stack
         direction="column"
-        space="2x"
+        spacing="2px"
       >
         <Box
           display="flex"
@@ -93,9 +93,9 @@ export const Location = (props: LocationProps): JSX.Element => {
         >
           <Heading variant="h4" color="text.primary">{location.name}</Heading>
 
-          <ActionButton component="button" label="close" onClick={() => deleteLocation(location)}>
+          <IconButton onClick={() => deleteLocation(location)} aria-label="delete location" border="none">
             <RiCloseLine />
-          </ActionButton>
+          </IconButton>
         </Box>
 
         <Box
@@ -110,7 +110,7 @@ export const Location = (props: LocationProps): JSX.Element => {
 
         <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
 
-        <TimeSlider timeValue={currentDay} />
+        <TimeSlider timeValue={currentDay} changeLocation={() => selectLoc(location)} />
       </Stack>
     </Box>
   );
