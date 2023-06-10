@@ -5,9 +5,12 @@ import {
 
 import { format } from 'date-fns';
 
-import { utcToZonedTime } from 'date-fns-tz';
+import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
+
+import { getUtcTime } from '@/shared/lib/time/getUtcTime';
+import { getDifBetweenDateAndNewSliderValue } from '@/shared/lib/time/getDifBetweenDateAndNewSliderValue';
 
 import { $selectedLocation } from './locations.model';
 
@@ -21,23 +24,23 @@ export const changeTimeFormat = createEvent<'hh:mm aaa' | 'HH:mm'>();
 
 export const changeTimeBySlider = createEvent<number>();
 
-// export const changeCurrentTime = createEvent();
-
 const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc: City | null }) => {
-  const hour = Math.trunc(data.dif / 3600000);
-  const min = Math.trunc((data.dif - hour * 3600000) / 60000);
-  const sec = Math.trunc((data.dif - hour * 3600000 - min * 60000) / 1000);
-  const milS = Math.trunc(data.dif - hour * 3600000 - min * 60000 - sec * 1000);
+  // const hour = Math.trunc(data.dif / 3600000);
+  // const min = Math.trunc((data.dif - hour * 3600000) / 60000);
+  // const sec = Math.trunc((data.dif - hour * 3600000 - min * 60000) / 1000);
+  // const milS = Math.trunc(data.dif - hour * 3600000 - min * 60000 - sec * 1000);
 
   /**
    * data.loc?.timezone as string, так как имеет значение undefined только при первом запуске приложения,
    * когда эта функция не запускается, во все остальных случаях значение переменной определено.
    */
-  const localDate = utcToZonedTime(data.date, data.loc?.timezone as string).getTime();
+  // const localDate = utcToZonedTime(data.date, data.loc?.timezone as string).getTime();
 
-  const newDate = utcToZonedTime(new Date(localDate).setHours(hour, min, sec, milS), data.loc?.timezone as string).getTime();
+  // const newDate = utcToZonedTime(new Date(localDate).setHours(hour, min, sec, milS), data.loc?.timezone as string).getTime();
 
-  const timeDif = newDate - localDate;
+  // const timeDif = newDate - localDate;
+
+  const timeDif = getDifBetweenDateAndNewSliderValue(data.date, data.dif, data.loc?.timezone as string);
 
   const resultDate = data.date.getTime() + timeDif;
 

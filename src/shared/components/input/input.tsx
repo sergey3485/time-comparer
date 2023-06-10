@@ -41,13 +41,14 @@ export const Input = (): JSX.Element => {
       minWidth="260px"
       height="158px"
     >
-      <input value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} />
+      <input value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="write city" />
       <Box
         display="flex"
         flexDirection="column"
         overflow="scroll"
         width="100%"
         height="100%"
+        role="list"
       >
         {locationVariants.map((loc) => (
           <Box

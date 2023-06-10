@@ -56,8 +56,6 @@ describe('header', () => {
 
     const changedTime = screen.queryByText('12:24 pm');
 
-    console.log(changedTime);
-
     expect(changedTime).toBeInTheDocument();
   });
 });

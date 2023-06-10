@@ -13,7 +13,7 @@ import { format } from 'date-fns';
 
 import { useUnit } from 'effector-react';
 
-import { getTimezoneOffset, utcToZonedTime } from 'date-fns-tz';
+import { getTimezoneOffset, utcToZonedTime, formatInTimeZone } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
@@ -22,6 +22,8 @@ import {
   $timeFormat,
   $time,
 } from '@/features/logic/time.model';
+import { getMils } from '@/shared/lib/time/getMils';
+
 import { TimeSlider } from '@/shared/components/time-slider';
 
 export interface LocationProps {
@@ -54,11 +56,15 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const selectedLocTZ = getTimezoneOffset(selectedLoc?.timezone as string) / (1000 * 60 * 60);
 
-  const currentDay = utcToZonedTime(time, location.timezone);
+  // const currentDay = utcToZonedTime(time, location.timezone);
 
-  const day = format(currentDay, 'dd MMMM');
+  const milsValue = getMils(time, location.timezone);
 
-  const currentTime = format(currentDay, timeVariant);
+  const day = formatInTimeZone(time, location.timezone, 'dd MMMM');
+
+  const currentTime = formatInTimeZone(time, location.timezone, timeVariant);
+
+  console.log('local hours and minutes', currentTime);
 
   const getTzDif = () => {
     const dif = timeZone - selectedLocTZ;
@@ -81,6 +87,7 @@ export const Location = (props: LocationProps): JSX.Element => {
       height="158px"
       onPointerDown={() => selectLoc(location)}
       backgroundColor={selectedLoc === location ? 'neutral.neutral5' : 'neutral.neutral3'}
+      role="listitem"
     >
       <Stack
         direction="column"
@@ -110,7 +117,7 @@ export const Location = (props: LocationProps): JSX.Element => {
 
         <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
 
-        <TimeSlider timeValue={currentDay} changeLocation={() => selectLoc(location)} />
+        <TimeSlider timeValue={milsValue} changeLocation={() => selectLoc(location)} />
       </Stack>
     </Box>
   );

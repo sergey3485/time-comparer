@@ -14,8 +14,6 @@ import {
   $isVisibleInput,
 } from '@/features/logic/locations.model';
 
-// import './App.css';
-
 const App = () => {
   const {
     locations,
@@ -27,9 +25,7 @@ const App = () => {
     showInput: createInput,
     isVisible: $isVisibleInput,
   });
-  const [items, setItems] = React.useState<number[]>([]);
 
-  console.log(locations);
   return (
     <MainLayout>
       <SimpleGrid
@@ -39,6 +35,7 @@ const App = () => {
           3,
           5,
         ]}
+        role="grid"
       >
         {locations.map((item) => (
           <Location
@@ -52,6 +49,7 @@ const App = () => {
           onClick={showInput}
           variant="outline"
           size="lg"
+          role="button"
         >
           add new
         </Button>

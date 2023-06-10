@@ -11,11 +11,13 @@ import {
   changeTimeBySlider,
 } from '@/features/logic/time.model';
 
+import { getMils } from '@/shared/lib/time/getMils';
+
 export interface TimeSliderProps {
   /**
    * The content
    */
-  timeValue: Date;
+  timeValue: number;
   changeLocation: () => void;
 }
 
@@ -31,10 +33,6 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
     changeSliderValue: changeTimeBySlider,
   });
 
-  const newDate = new Date(timeValue).setHours(0, 0, 0, 0);
-
-  const timeDif = timeValue.getTime() - newDate;
-
   return (
     <Slider
       step={900000}
@@ -42,7 +40,7 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
       min={0}
       onChange={(value) => changeSliderValue(value)}
       onChangeStart={changeLocation}
-      value={timeDif}
+      value={timeValue}
     >
       <SliderTrack>
         <SliderFilledTrack />
