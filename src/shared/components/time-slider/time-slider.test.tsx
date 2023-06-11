@@ -23,7 +23,6 @@ describe('slider', () => {
     });
 
     const { container } = renderWithProviders(<TimeSlider timeValue={mils} changeLocation={() => {}} />, scope);
-    console.log(container);
 
     const element = screen.queryByRole('slider');
 
@@ -45,11 +44,13 @@ describe('slider', () => {
 
   //   const element = screen.queryByRole('slider');
 
-  //   screen.debug();
+  //   const attribute = element?.getAttribute('aria-valuenow');
 
-  //   const a = screen.queryByDisplayValue(44640000);
+  //   console.log(attribute);
 
-  //   expect(a).toBeInTheDocument();
+  //   // screen.debug();
+
+  //   expect(attribute).toBe(mils);
   // });
 
   // it('Должен сменить время при изменение значения слайдера', async () => {

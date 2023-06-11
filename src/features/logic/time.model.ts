@@ -3,13 +3,8 @@ import {
   sample, createEvent, createStore, createEffect,
 } from 'effector';
 
-import { format } from 'date-fns';
-
-import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
-
 import { City } from 'worldcities/lib/city';
 
-import { getUtcTime } from '@/shared/lib/time/getUtcTime';
 import { getDifBetweenDateAndNewSliderValue } from '@/shared/lib/time/getDifBetweenDateAndNewSliderValue';
 
 import { $selectedLocation } from './locations.model';

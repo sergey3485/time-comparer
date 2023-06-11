@@ -32,6 +32,8 @@ const App = () => {
         spacing="12px"
         columns={[
           1,
+          1,
+          2,
           3,
           5,
         ]}

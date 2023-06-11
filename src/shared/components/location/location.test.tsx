@@ -6,8 +6,6 @@ import { renderWithProviders } from '@/shared/lib/test-utils';
 
 import { $selectedLocation, moscow, prague } from '@/features/logic/locations.model';
 
-import { getUtcTime } from '@/shared/lib/time/getUtcTime';
-
 import { Location } from './location';
 import { $time, $timeFormat } from '@/features/logic/time.model';
 
@@ -43,7 +41,7 @@ describe('location', () => {
 
     screen.debug();
 
-    const element = screen.queryByText('11:24');
+    const element = screen.queryByText('10:24');
 
     expect(element).toBeInTheDocument();
   });

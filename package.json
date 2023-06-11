@@ -10,7 +10,7 @@
     "build-storybook": "build-storybook",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "start lint"
+    "lint": "eslint src/ --ext .ts --ext .tsx"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.7.0",

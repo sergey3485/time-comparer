@@ -26,6 +26,13 @@ const { tick } = interval({
   start: startInterval,
 });
 
+sample({
+  clock: tick,
+  source: $isVisibleRefresher,
+  filter: (data) => !data,
+  fn: () => new Date(),
+  target: $time,
+});
 // TODO: Синхронизировать время в $currentTime с $time, если они равны
 sample({
   clock: tick,

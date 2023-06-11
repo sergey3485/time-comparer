@@ -80,7 +80,7 @@ export const Location = (props: LocationProps): JSX.Element => {
       borderColor="neutral.neutral7"
       borderRadius="4"
       border="1px solid"
-      padding="4px"
+      padding="2"
       flexDirection="column"
       width="100%"
       minWidth="260px"

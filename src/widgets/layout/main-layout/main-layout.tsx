@@ -21,7 +21,7 @@ export const MainLayout = (props: MainLayoutProps): JSX.Element => {
       width="100%"
       minHeight="100vh"
       flexDirection="column"
-      padding="4x"
+      padding="4"
     >
       <Header />
       <Box
