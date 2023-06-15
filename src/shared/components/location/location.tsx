@@ -22,7 +22,7 @@ import {
   $timeFormat,
   $time,
 } from '@/features/logic/time.model';
-import { getMils } from '@/shared/lib/time/getMils';
+import { getMils } from '@/shared/lib/time/get-mils';
 
 import { TimeSlider } from '@/shared/components/time-slider';
 
@@ -79,14 +79,13 @@ export const Location = (props: LocationProps): JSX.Element => {
       display="flex"
       borderColor="neutral.neutral7"
       borderRadius="4"
-      border="1px solid"
       padding="2"
       flexDirection="column"
       width="100%"
       minWidth="260px"
       height="158px"
       onPointerDown={() => selectLoc(location)}
-      backgroundColor={selectedLoc === location ? 'neutral.neutral5' : 'neutral.neutral3'}
+      backgroundColor={selectedLoc === location ? 'blackAlpha.300' : 'blackAlpha.100'}
       role="listitem"
     >
       <Stack
@@ -100,7 +99,13 @@ export const Location = (props: LocationProps): JSX.Element => {
         >
           <Heading variant="h4" color="text.primary">{location.name}</Heading>
 
-          <IconButton onClick={() => deleteLocation(location)} aria-label="delete location" border="none">
+          <IconButton
+            onClick={() => deleteLocation(location)}
+            aria-label="delete location"
+            variant="ghost"
+            colorScheme="blackAlpha"
+            borderRadius="50%"
+          >
             <RiCloseLine />
           </IconButton>
         </Box>
@@ -110,7 +115,7 @@ export const Location = (props: LocationProps): JSX.Element => {
           justifyContent="space-between"
         >
           <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
-          {tzDif && <Text variant="s" color={tzDif > 0 ? 'success.success9' : 'error.error9'} textAlign="start">{tzDif > 0 ? `${tzDif}` : `${tzDif}`} H</Text>}
+          {tzDif && <Text variant="s" color={tzDif > 0 ? 'green.500' : 'red.500'} textAlign="start">{tzDif > 0 ? `+${tzDif}` : `${tzDif}`} H</Text>}
         </Box>
 
         <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { getDifBetweenDateAndNewSliderValue } from '../getDifBetweenDateAndNewSliderValue';
+import { getDifBetweenDateAndNewSliderValue } from '../get-dif-between-date-and-new-slider-value';
 
 import { prague } from '@/features/logic/locations.model';
 

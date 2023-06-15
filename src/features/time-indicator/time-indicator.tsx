@@ -26,11 +26,11 @@ export const TimeIndicator = () => {
       alignItems="center"
     >
       {isVisibleRefresher && (
-        <IconButton aria-label="set time to current time" onClick={changeTime}>
+        <IconButton aria-label="set time to current time" onClick={changeTime} variant="ghost" colorScheme="purple" borderRadius="50%">
           <RiRestartLine />
         </IconButton>
       )}
-      <Text>
+      <Text marginLeft="2" fontSize="2xl">
         {formattedTime}
       </Text>
     </Box>

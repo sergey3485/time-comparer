@@ -5,7 +5,7 @@ import {
 
 import { City } from 'worldcities/lib/city';
 
-import { getDifBetweenDateAndNewSliderValue } from '@/shared/lib/time/getDifBetweenDateAndNewSliderValue';
+import { getDifBetweenDateAndNewSliderValue } from '@/shared/lib/time/get-dif-between-date-and-new-slider-value';
 
 import { $selectedLocation } from './locations.model';
 

@@ -8,7 +8,7 @@ import { $inputValue, changeInputValue, prague } from '@/features/logic/location
 
 import { TimeSlider } from './time-slider';
 import { $time, changeTimeBySlider } from '@/features/logic/time.model';
-import { getMils } from '@/shared/lib/time/getMils';
+import { getMils } from '@/shared/lib/time/get-mils';
 
 describe('slider', () => {
   it('должен рендерить слайдер', () => {

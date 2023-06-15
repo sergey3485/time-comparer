@@ -46,15 +46,18 @@ export const Header = (): JSX.Element => {
           <Stack
             spacing="2px"
             direction="row"
+            marginLeft="2"
           >
             <Button
               onClick={() => changeTimeFormatOnClick('hh:mm aaa')}
+              colorScheme="purple"
             >
               12
             </Button>
 
             <Button
               onClick={() => changeTimeFormatOnClick('HH:mm')}
+              colorScheme="purple"
             >
               24
             </Button>

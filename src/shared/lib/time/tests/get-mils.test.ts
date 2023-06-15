@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 import { prague } from '@/features/logic/locations.model';
 
-import { getMils } from '../getMils';
+import { getMils } from '../get-mils';
 
 describe('get milliseconds', () => {
   it('Должен возвращать колличество милисекунд равное их колличеству в часах и минутах, прошедших с начала дня в зависимости от тайм зоны', () => {

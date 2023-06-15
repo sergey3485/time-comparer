@@ -1,6 +1,4 @@
-import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
-
-import { getMils } from './getMils';
+import { getMils } from './get-mils';
 
 export const getDifBetweenDateAndNewSliderValue = (firsDate: Date, value: number, tz: string) => {
   const mils = getMils(firsDate, tz);
