@@ -14,8 +14,6 @@ import {
   addLocation,
 } from '@/features/logic/locations.model';
 
-import * as S from './input.styled';
-
 export const Input = (): JSX.Element => {
   const {
     inputValue,

@@ -9,11 +9,9 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 
-import { format } from 'date-fns';
-
 import { useUnit } from 'effector-react';
 
-import { getTimezoneOffset, utcToZonedTime, formatInTimeZone } from 'date-fns-tz';
+import { getTimezoneOffset, formatInTimeZone } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
@@ -56,15 +54,11 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const selectedLocTZ = getTimezoneOffset(selectedLoc?.timezone as string) / (1000 * 60 * 60);
 
-  // const currentDay = utcToZonedTime(time, location.timezone);
-
   const milsValue = getMils(time, location.timezone);
 
   const day = formatInTimeZone(time, location.timezone, 'dd MMMM');
 
   const currentTime = formatInTimeZone(time, location.timezone, timeVariant);
-
-  console.log('local hours and minutes', currentTime);
 
   const getTzDif = () => {
     const dif = timeZone - selectedLocTZ;

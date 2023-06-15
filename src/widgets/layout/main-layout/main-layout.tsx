@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-// import { Box } from '@effable/react';
-
 import { Box } from '@chakra-ui/react';
 
 import { Header } from '../../../shared/components/header';

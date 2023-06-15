@@ -4,7 +4,6 @@ import { screen } from '@testing-library/react';
 
 import {
   $locations,
-  changeInputValue,
   createInput,
   $isVisibleInput,
   prague,
@@ -45,8 +44,6 @@ describe('location grid', () => {
     const grid = screen.queryByRole('grid');
 
     const children = grid?.childElementCount;
-
-    console.log(children);
 
     expect(children).toBe(3);
   });

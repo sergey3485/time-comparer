@@ -33,7 +33,7 @@ sample({
   fn: () => new Date(),
   target: $time,
 });
-// TODO: Синхронизировать время в $currentTime с $time, если они равны
+
 sample({
   clock: tick,
   fn: () => new Date(),

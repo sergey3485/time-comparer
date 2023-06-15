@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useUnit } from 'effector-react';
 import {
   Box,
-  Button,
   Text,
   IconButton,
 } from '@chakra-ui/react';

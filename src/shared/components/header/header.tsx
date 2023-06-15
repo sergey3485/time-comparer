@@ -1,11 +1,5 @@
 import * as React from 'react';
-import { format } from 'date-fns';
 import { useUnit } from 'effector-react';
-// import {
-//   Box,
-//   Button,
-//   Stack,
-// } from '@effable/react';
 
 import {
   Box,

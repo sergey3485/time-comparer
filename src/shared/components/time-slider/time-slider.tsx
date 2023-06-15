@@ -6,12 +6,9 @@ import {
   SliderFilledTrack,
   SliderThumb,
 } from '@chakra-ui/react';
-import { City } from 'worldcities/lib/city';
 import {
   changeTimeBySlider,
 } from '@/features/logic/time.model';
-
-import { getMils } from '@/shared/lib/time/get-mils';
 
 export interface TimeSliderProps {
   /**
