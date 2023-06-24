@@ -7,6 +7,7 @@ import {
   Text,
   Stack,
   IconButton,
+  Tag,
 } from '@chakra-ui/react';
 
 import { useUnit } from 'effector-react';
@@ -20,7 +21,12 @@ import {
   $timeFormat,
   $time,
 } from '@/features/logic/time.model';
-import { getMils } from '@/shared/lib/time/get-mils';
+
+import {
+  getMils,
+  getTimezoneDifference,
+  getTimezoneInHours,
+} from '@/shared/lib/time';
 
 import { TimeSlider } from '@/shared/components/time-slider';
 
@@ -50,9 +56,7 @@ export const Location = (props: LocationProps): JSX.Element => {
     deleteLocation: deleteCity,
   });
 
-  const timeZone = getTimezoneOffset(location.timezone) / (1000 * 60 * 60);
-
-  const selectedLocTZ = getTimezoneOffset(selectedLoc?.timezone as string) / (1000 * 60 * 60);
+  const timeZone = getTimezoneInHours(location.timezone);
 
   const milsValue = getMils(time, location.timezone);
 
@@ -60,63 +64,68 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const currentTime = formatInTimeZone(time, location.timezone, timeVariant);
 
-  const getTzDif = () => {
-    const dif = timeZone - selectedLocTZ;
-    const result = selectedLoc === location ? null : dif;
-    return result;
-  };
+  const timezoneDifference = getTimezoneDifference(location.timezone, selectedLoc?.timezone as string);
 
-  const tzDif = getTzDif();
+  const isSelectedLocation = location.name !== selectedLoc?.name;
 
   return (
     <Box
       display="flex"
-      borderColor="neutral.neutral7"
       borderRadius="4"
       padding="2"
       flexDirection="column"
       width="100%"
-      minWidth="260px"
       height="158px"
       onPointerDown={() => selectLoc(location)}
-      backgroundColor={selectedLoc === location ? 'blackAlpha.300' : 'blackAlpha.100'}
+      backgroundColor={selectedLoc === location ? 'blackAlpha.300' : 'white'}
       role="listitem"
+      position="relative"
     >
+      <IconButton
+        position="absolute"
+        top="4px"
+        right="4px"
+        onClick={() => deleteLocation(location)}
+        aria-label="delete location"
+        variant="ghost"
+        size="xs"
+        colorScheme="blackAlpha"
+        borderRadius="50%"
+      >
+        <RiCloseLine />
+      </IconButton>
+
       <Stack
         direction="column"
         spacing="2px"
+        flex="1"
       >
         <Box
           display="flex"
           width="100%"
           justifyContent="space-between"
         >
-          <Heading variant="h4" color="text.primary">{location.name}</Heading>
-
-          <IconButton
-            onClick={() => deleteLocation(location)}
-            aria-label="delete location"
-            variant="ghost"
-            colorScheme="blackAlpha"
-            borderRadius="50%"
-          >
-            <RiCloseLine />
-          </IconButton>
+          <Heading size="sm" fontWeight={500} color="text.primary">
+            {location.name},  {location.country.name}
+          </Heading>
         </Box>
 
         <Box
           display="flex"
           justifyContent="space-between"
         >
-          <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
-          {tzDif && <Text variant="s" color={tzDif > 0 ? 'green.500' : 'red.500'} textAlign="start">{tzDif > 0 ? `+${tzDif}` : `${tzDif}`} H</Text>}
+          <Text fontSize="sm" fontWeight={500} color="gray.500" textAlign="start">GMT{timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
         </Box>
 
-        <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>
+        <Text fontSize="sm" fontWeight={500} color="gray.500" textAlign="start">{day}</Text>
 
-        <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
-
-        <TimeSlider timeValue={milsValue} changeLocation={() => selectLoc(location)} />
+        <Box mt="auto">
+          <Stack direction="row" alignItems="center">
+            <Text style={{ fontVariantNumeric: 'tabular-nums slashed-zero' }} letterSpacing="-1.5px" fontSize="3xl" fontWeight={500} color="blackAlpha.900" textAlign="start">{currentTime}</Text>
+            {isSelectedLocation && <Tag size="md" variant="subtle" colorScheme={timezoneDifference >= 0 ? 'green' : 'red'} textAlign="start">{timezoneDifference >= 0 ? `+${timezoneDifference}` : `${timezoneDifference}`} H</Tag>}
+          </Stack>
+          <TimeSlider timeValue={milsValue} changeLocation={() => selectLoc(location)} />
+        </Box>
       </Stack>
     </Box>
   );

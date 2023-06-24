@@ -8,6 +8,7 @@ import { $selectedLocation, moscow, prague } from '@/features/logic/locations.mo
 
 import { Location } from './location';
 import { $time, $timeFormat } from '@/features/logic/time.model';
+import { format24hours } from '@/shared/lib/time-format';
 
 describe('location', () => {
   it('Должен рендерить карточку локации', () => {
@@ -32,7 +33,7 @@ describe('location', () => {
     const scope = fork({
       values: [
         [$time, time],
-        [$timeFormat, 'HH:mm'],
+        [$timeFormat, format24hours],
         [$selectedLocation, moscow],
       ],
     });

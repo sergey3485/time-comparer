@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Box,
+  Input as InputChakra,
 } from '@chakra-ui/react';
 
 import { useUnit } from 'effector-react';
@@ -30,16 +31,13 @@ export const Input = (): JSX.Element => {
   return (
     <Box
       display="flex"
-      borderColor="neutral.neutral7"
       borderRadius="4px"
-      border="1px solid"
-      padding="1px"
       flexDirection="column"
       width="100%"
-      minWidth="260px"
       height="158px"
+      backgroundColor="white"
     >
-      <input value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="write city" />
+      <InputChakra size="md" padding={2} variant="flushed" value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="Write city" />
       <Box
         display="flex"
         flexDirection="column"
@@ -51,7 +49,7 @@ export const Input = (): JSX.Element => {
         {locationVariants.map((loc) => (
           <Box
             display="flex"
-            key={uuidv4()}
+            key={`${loc.country.name}/${loc.name}`}
             width="100%"
             padding="1px"
             borderColor="neutral.neutral3"

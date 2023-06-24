@@ -1,7 +1,5 @@
 import '@emotion/react';
 
-import { EffableTheme } from '@effable/react';
-
 import { Theme } from '@chakra-ui/react';
 
 declare module '@emotion/react' {

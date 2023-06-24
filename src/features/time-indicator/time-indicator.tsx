@@ -25,7 +25,7 @@ export const TimeIndicator = () => {
       alignItems="center"
     >
       {isVisibleRefresher && (
-        <IconButton aria-label="set time to current time" onClick={changeTime} variant="ghost" colorScheme="purple" borderRadius="50%">
+        <IconButton aria-label="set time to current time" onClick={changeTime} variant="ghost" colorScheme="blue" borderRadius="50%">
           <RiRestartLine />
         </IconButton>
       )}

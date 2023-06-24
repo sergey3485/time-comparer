@@ -14,7 +14,7 @@ describe('input', () => {
 
     renderWithProviders(<Input />, scope);
 
-    const element = screen.queryByPlaceholderText('write city');
+    const element = screen.queryByPlaceholderText('Write city');
 
     expect(element).toBeInTheDocument();
   });

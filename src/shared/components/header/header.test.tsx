@@ -7,6 +7,8 @@ import { renderWithProviders } from '@/shared/lib/test-utils';
 import { $currentTime, $timeFormat, changeTimeFormat } from '@/features/logic/time.model';
 import { Header } from './header';
 
+import { TimeFormat, format24hours, format12hours } from '@/shared/lib/time-format';
+
 describe('header', () => {
   it('Должен отображать кнопки смены формата времени', () => {
     const scope = fork();
@@ -42,7 +44,7 @@ describe('header', () => {
     const scope = fork({
       values: [
         [$currentTime, currentDate],
-        [$timeFormat, 'HH:mm'],
+        [$timeFormat, format24hours],
       ],
     });
 
@@ -52,7 +54,7 @@ describe('header', () => {
 
     expect(element).toBeInTheDocument();
 
-    await allSettled(changeTimeFormat, { scope, params: 'hh:mm aaa' });
+    await allSettled(changeTimeFormat, { scope, params: format12hours });
 
     const changedTime = screen.queryByText('12:24 pm');
 

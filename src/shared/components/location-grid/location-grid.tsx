@@ -49,11 +49,13 @@ export const LocationGrid = (): JSX.Element => {
       ))}
 
       {isVisible && <Input /> }
+
       <Button
         onClick={showInput}
         variant="outline"
         size="lg"
         role="button"
+        colorScheme="blue"
       >
         add new
       </Button>

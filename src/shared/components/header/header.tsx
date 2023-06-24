@@ -12,6 +12,7 @@ import {
 } from '@/features/logic/time.model';
 
 import { TimeIndicator } from '@/features/time-indicator';
+import { format12hours, format24hours } from '@/shared/lib/time-format';
 
 export const Header = (): JSX.Element => {
   const {
@@ -43,15 +44,15 @@ export const Header = (): JSX.Element => {
             marginLeft="2"
           >
             <Button
-              onClick={() => changeTimeFormatOnClick('hh:mm aaa')}
-              colorScheme="purple"
+              onClick={() => changeTimeFormatOnClick(format12hours)}
+              colorScheme="blue"
             >
               12
             </Button>
 
             <Button
-              onClick={() => changeTimeFormatOnClick('HH:mm')}
-              colorScheme="purple"
+              onClick={() => changeTimeFormatOnClick(format24hours)}
+              colorScheme="blue"
             >
               24
             </Button>

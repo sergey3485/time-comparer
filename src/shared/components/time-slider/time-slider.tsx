@@ -38,7 +38,7 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
       onChange={changeSliderValue}
       onChangeStart={changeLocation}
       value={timeValue}
-      colorScheme="purple"
+      colorScheme="blue"
     >
       <SliderTrack>
         <SliderFilledTrack />
