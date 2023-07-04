@@ -7,18 +7,19 @@ import {
 
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
+import { appStarted } from '@/shared/app.model';
 
 export const moscow = worldCities.getByName('Moscow') as City;
 export const prague = worldCities.getByName('prague') as City;
 export const toki = worldCities.getByName('toki') as City;
 
-export const $locations = createStore<City[]>([moscow, prague, toki]);
+export const $locations = createStore<City[]>([]);
 
 export const $locationVariants = createStore<City[]>([]);
 
 export const $inputValue = createStore<string>('');
 
-export const $selectedLocation = createStore<City | null>(moscow);
+export const $selectedLocation = createStore<City | null>(null);
 
 export const changeInputValue = createEvent<string>();
 
@@ -35,6 +36,64 @@ export const createInput = createEvent();
 const getCitiesByNameFx = createEffect((inputValue: string) => {
   const loc = inputValue.length >= 3 ? worldCities.getAllByName(inputValue) : [];
   return loc;
+});
+
+const getLocationsFromLocalStorageFx = createEffect(() => {
+  const savedLocation = localStorage.getItem('locations');
+
+  const parsedLocations = savedLocation ? JSON.parse(savedLocation) as City[] : null;
+
+  const savedLocationToJson = parsedLocations || [] as City[];
+
+  return savedLocationToJson;
+});
+
+const getSelectedLocationFx = createEffect(() => {
+  const savedSelectedLocation = localStorage.getItem('selectedLocation');
+  const parsedData = savedSelectedLocation ? JSON.parse(savedSelectedLocation) as City : null;
+
+  const savedSelectedLocationJson = parsedData || null;
+  return savedSelectedLocationJson;
+});
+
+const saveLocationsToLocalStorageFx = createEffect((locations: City[]) => {
+  const savedLocationsToString = JSON.stringify(locations);
+  localStorage.setItem('locations', savedLocationsToString);
+});
+
+const saveSelectedLocationFx = createEffect((selectedLocation: City | null) => {
+  const savedSelectedLocation = JSON.stringify(selectedLocation);
+  localStorage.setItem('selectedLocation', savedSelectedLocation);
+});
+
+sample({
+  clock: appStarted,
+  target: getSelectedLocationFx,
+});
+
+sample({
+  clock: getSelectedLocationFx.doneData,
+  target: $selectedLocation,
+});
+
+sample({
+  clock: appStarted,
+  target: getLocationsFromLocalStorageFx,
+});
+
+sample({
+  clock: $selectedLocation,
+  target: saveSelectedLocationFx,
+});
+
+sample({
+  clock: getLocationsFromLocalStorageFx.doneData,
+  target: $locations,
+});
+
+sample({
+  clock: $locations,
+  target: saveLocationsToLocalStorageFx,
 });
 
 sample({
