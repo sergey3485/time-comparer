@@ -1,33 +1,26 @@
 import * as React from 'react';
-import { format } from 'date-fns';
 import { useUnit } from 'effector-react';
-import {
-  ActionButton,
-  Box,
-  Button,
-  ButtonBase,
-  Stack,
-  Text,
-} from '@effable/react';
 
 import {
-  $timeVariant,
-  $currentTime,
-  changeTimeVariant,
+  Box,
+  Button,
+  Stack,
+} from '@chakra-ui/react';
+
+import {
+  changeTimeFormat,
 } from '@/features/logic/time.model';
+
+import { TimeIndicator } from '@/features/time-indicator';
+import { format12hours, format24hours } from '@/shared/lib/time-format';
 
 export const Header = (): JSX.Element => {
   const {
-    timeVariant,
-    time,
-    changeTimeVariantOnClick,
+    changeTimeFormatOnClick,
   } = useUnit({
-    timeVariant: $timeVariant,
-    time: $currentTime,
-    changeTimeVariantOnClick: changeTimeVariant,
+    changeTimeFormatOnClick: changeTimeFormat,
   });
 
-  const currentTime = format(time, timeVariant);
   return (
     <Box
       display="flex"
@@ -38,24 +31,28 @@ export const Header = (): JSX.Element => {
         marginLeft="auto"
       >
         <Stack
-          space="4x"
+          spacing="4px"
           alignItems="center"
+          direction="row"
         >
-          <Box>
-            {currentTime}
-          </Box>
+
+          <TimeIndicator />
 
           <Stack
-            space="2x"
+            spacing="2px"
+            direction="row"
+            marginLeft="2"
           >
             <Button
-              onClick={() => changeTimeVariantOnClick('KK:mm aaa')}
+              onClick={() => changeTimeFormatOnClick(format12hours)}
+              colorScheme="blue"
             >
               12
             </Button>
 
             <Button
-              onClick={() => changeTimeVariantOnClick('HH:mm')}
+              onClick={() => changeTimeFormatOnClick(format24hours)}
+              colorScheme="blue"
             >
               24
             </Button>

@@ -6,22 +6,31 @@ import {
   Heading,
   Text,
   Stack,
-  ActionButton,
-} from '@effable/react';
-
-import { format } from 'date-fns';
+  IconButton,
+  Tag,
+} from '@chakra-ui/react';
 
 import { useUnit } from 'effector-react';
 
-import { getTimezoneOffset, utcToZonedTime } from 'date-fns-tz';
+import { formatInTimeZone } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
 import { $selectedLocation, changeSelectedLocation, deleteCity } from '@/features/logic/locations.model';
 import {
-  $timeVariant,
+  $timeFormat,
   $time,
 } from '@/features/logic/time.model';
+
+import {
+  getMils,
+  getTimezoneDifference,
+  getTimezoneInHours,
+  isDayEqual,
+} from '@/shared/lib/time';
+
+import { isTwoLocationEqual } from '@/shared/lib/location/isTwoLocationEqual';
+
 import { TimeSlider } from '@/shared/components/time-slider';
 
 export interface LocationProps {
@@ -43,74 +52,81 @@ export const Location = (props: LocationProps): JSX.Element => {
     selectLoc,
     deleteLocation,
   } = useUnit({
-    timeVariant: $timeVariant,
+    timeVariant: $timeFormat,
     time: $time,
     selectedLoc: $selectedLocation,
     selectLoc: changeSelectedLocation,
     deleteLocation: deleteCity,
   });
 
-  const timeZone = getTimezoneOffset(location.timezone) / (1000 * 60 * 60);
+  const timeZone = getTimezoneInHours(location.timezone);
 
-  const selectedLocTZ = getTimezoneOffset(selectedLoc.timezone) / (1000 * 60 * 60);
+  const milsValue = getMils(time, location.timezone);
 
-  const currentDay = utcToZonedTime(time, location.timezone);
+  const day = formatInTimeZone(time, location.timezone, 'dd MMMM');
 
-  const day = format(currentDay, 'dd MMMM');
+  const currentTime = formatInTimeZone(time, location.timezone, timeVariant);
 
-  const currentTime = format(currentDay, timeVariant);
-
-  const getTzDif = () => {
-    const dif = timeZone - selectedLocTZ;
-    const result = selectedLoc === location ? null : dif;
-    return result;
-  };
-
-  const tzDif = getTzDif();
+  const timezoneDifference = getTimezoneDifference(location.timezone, selectedLoc?.timezone as string);
 
   return (
     <Box
       display="flex"
-      borderColor="neutral.neutral7"
-      borderRadius="4x"
-      border="1x solid"
-      padding="4x"
+      borderRadius="4"
+      padding="2"
       flexDirection="column"
       width="100%"
-      minWidth="260px"
       height="158px"
       onPointerDown={() => selectLoc(location)}
-      backgroundColor={selectedLoc === location ? 'neutral.neutral5' : 'neutral.neutral3'}
+      backgroundColor={isTwoLocationEqual(selectedLoc as City, location) ? 'blackAlpha.300' : 'white'}
+      role="listitem"
+      position="relative"
     >
+      <IconButton
+        position="absolute"
+        top="4px"
+        right="4px"
+        onClick={() => deleteLocation(location)}
+        aria-label="delete location"
+        variant="ghost"
+        size="xs"
+        colorScheme="blackAlpha"
+        borderRadius="50%"
+      >
+        <RiCloseLine />
+      </IconButton>
+
       <Stack
         direction="column"
-        space="2x"
+        spacing="2px"
+        flex="1"
       >
         <Box
           display="flex"
           width="100%"
           justifyContent="space-between"
         >
-          <Heading variant="h4" color="text.primary">{location.name}</Heading>
-
-          <ActionButton component="button" label="close" onClick={() => deleteLocation(location)}>
-            <RiCloseLine />
-          </ActionButton>
+          <Heading size="sm" fontWeight={500} color="text.primary">
+            {location.name},  {location.country.name}
+          </Heading>
         </Box>
 
         <Box
           display="flex"
           justifyContent="space-between"
         >
-          <Text variant="s" color="text.secondary" textAlign="start">GMT {timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
-          {tzDif && <Text variant="s" color={tzDif > 0 ? 'success.success9' : 'error.error9'} textAlign="start">{tzDif > 0 ? `${tzDif}` : `${tzDif}`} H</Text>}
+          <Text fontSize="sm" fontWeight={500} color="gray.500" textAlign="start">GMT{timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
         </Box>
 
-        <Text variant="s" color="text.secondary" textAlign="start">{day}</Text>
+        <Text fontSize="sm" fontWeight={500} color={isDayEqual(selectedLoc as City, location, time) ? 'gray.500' : 'red'} textAlign="start">{day}</Text>
 
-        <Text variant="s" color="text.secondary" textAlign="start">{currentTime}</Text>
-
-        <TimeSlider timeValue={currentDay} />
+        <Box mt="auto">
+          <Stack direction="row" alignItems="center">
+            <Text style={{ fontVariantNumeric: 'tabular-nums slashed-zero' }} letterSpacing="-1.5px" fontSize="3xl" fontWeight={500} color="blackAlpha.900" textAlign="start">{currentTime}</Text>
+            {!isTwoLocationEqual(selectedLoc as City, location) && <Tag size="md" variant="subtle" colorScheme={timezoneDifference >= 0 ? 'green' : 'red'} textAlign="start">{timezoneDifference >= 0 ? `+${timezoneDifference}` : `${timezoneDifference}`} H</Tag>}
+          </Stack>
+          <TimeSlider timeValue={milsValue} changeLocation={() => selectLoc(location)} />
+        </Box>
       </Stack>
     </Box>
   );

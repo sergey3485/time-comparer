@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {
   Box,
-  Heading,
-  Text,
-} from '@effable/react';
+  Input as InputChakra,
+} from '@chakra-ui/react';
+
 import { useUnit } from 'effector-react';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -14,8 +14,6 @@ import {
   changeInputValue,
   addLocation,
 } from '@/features/logic/locations.model';
-
-import * as S from './input.styled';
 
 export const Input = (): JSX.Element => {
   const {
@@ -33,29 +31,27 @@ export const Input = (): JSX.Element => {
   return (
     <Box
       display="flex"
-      borderColor="neutral.neutral7"
-      borderRadius="4x"
-      border="1px solid"
-      padding="1x"
+      borderRadius="4px"
       flexDirection="column"
       width="100%"
-      minWidth="260px"
       height="158px"
+      backgroundColor="white"
     >
-      <input value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} />
+      <InputChakra size="md" padding={2} variant="flushed" value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="Write city" />
       <Box
         display="flex"
         flexDirection="column"
         overflow="scroll"
         width="100%"
         height="100%"
+        role="list"
       >
         {locationVariants.map((loc) => (
           <Box
             display="flex"
-            key={uuidv4()}
+            key={`${loc.country.name}/${loc.name}`}
             width="100%"
-            padding="1x"
+            padding="1px"
             borderColor="neutral.neutral3"
             borderBottom="1px solid"
             onClick={() => addNewLocation(loc)}

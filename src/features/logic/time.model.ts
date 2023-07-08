@@ -1,55 +1,36 @@
+/* eslint-disable @typescript-eslint/indent */
 import {
   sample, createEvent, createStore, createEffect,
 } from 'effector';
 
-import { format } from 'date-fns';
-
-import { utcToZonedTime } from 'date-fns-tz';
-
 import { City } from 'worldcities/lib/city';
 
+import { getDiffBetweenDateAndNewSliderValue } from '@/shared/lib/time/get-diff-between-date-and-new-slider-value';
+
 import { $selectedLocation } from './locations.model';
+import { TimeFormat, format24hours } from '@/shared/lib/time-format';
 
 export const $time = createStore<Date>(new Date());
 
 export const $currentTime = createStore(new Date());
 
-export const $timeVariant = createStore<'KK:mm aaa' | 'HH:mm'>('HH:mm');
+export const $timeFormat = createStore<TimeFormat>(format24hours);
 
-export const changeTimeVariant = createEvent<'KK:mm aaa' | 'HH:mm'>();
+export const changeTimeFormat = createEvent<TimeFormat>();
 
 export const changeTimeBySlider = createEvent<number>();
 
-export const changeCurrentTime = createEvent();
-
-const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc: City }) => {
-  const hour = Math.trunc(data.dif / 3600000);
-  const min = Math.trunc((data.dif - hour * 3600000) / 60000);
-  const sec = Math.trunc((data.dif - hour * 3600000 - min * 60000) / 1000);
-  const milS = Math.trunc(data.dif - hour * 3600000 - min * 60000 - sec * 1000);
-  // console.log('hours ', hour);
-  // console.log('minutes ', min);
-  // console.log('seconds ', sec);
-  // console.log('mill seconds ', milS);
-
-  const localDate = utcToZonedTime(data.date, data.loc.timezone).getTime();
-
-  const newDate = new Date(localDate).setHours(hour, min, sec, milS);
-
-  const timeDif = newDate - localDate;
+const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc: City | null }) => {
+  const timeDif = getDiffBetweenDateAndNewSliderValue(data.date, data.dif, data.loc?.timezone as string);
 
   const resultDate = data.date.getTime() + timeDif;
-  // console.log('old date ', data.date);
-  // console.log('local date', localDate);
-  // console.log('new local date', newDate);
-  // console.log('dif ', timeDif);
 
   return new Date(resultDate);
 });
 
 sample({
-  clock: changeTimeVariant,
-  target: $timeVariant,
+  clock: changeTimeFormat,
+  target: $timeFormat,
 });
 
 sample({

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box } from '@effable/react';
+import { Box } from '@chakra-ui/react';
 
 import { Header } from '../../../shared/components/header';
 
@@ -19,11 +19,12 @@ export const MainLayout = (props: MainLayoutProps): JSX.Element => {
       width="100%"
       minHeight="100vh"
       flexDirection="column"
-      padding="4x"
+      padding="4"
+      backgroundColor="gray.50"
     >
       <Header />
       <Box
-        marginTop="4x"
+        marginTop="4"
       >
         {children}
       </Box>
