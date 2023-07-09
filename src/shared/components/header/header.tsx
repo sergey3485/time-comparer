@@ -9,7 +9,7 @@ import {
 
 import {
   changeTimeFormat,
-} from '@/features/logic/time.model';
+} from '@/features/time/time.model';
 
 import { TimeIndicator } from '@/features/time-indicator';
 import { format12hours, format24hours } from '@/shared/lib/time-format';

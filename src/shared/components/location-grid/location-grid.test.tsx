@@ -8,7 +8,8 @@ import {
   $isVisibleInput,
   prague,
   moscow,
-} from '@/features/logic/locations.model';
+  $selectedLocation,
+} from '@/features/locations/locations.model';
 
 import { LocationGrid } from './location-grid';
 import { renderWithProviders } from '@/shared/lib/test-utils';
@@ -36,6 +37,7 @@ describe('location grid', () => {
       values: [
         [$locations, [prague, moscow]],
         [$isVisibleInput, false],
+        [$selectedLocation, moscow],
       ],
     });
 
@@ -57,13 +59,13 @@ describe('location grid', () => {
 
     renderWithProviders(<LocationGrid />, scope);
 
-    const element = screen.queryByPlaceholderText('write city');
+    const element = screen.queryByPlaceholderText('Write city');
 
     expect(element).not.toBeInTheDocument();
 
     await allSettled(createInput, { scope });
 
-    const input = screen.queryByPlaceholderText('write city');
+    const input = screen.queryByPlaceholderText('Write city');
 
     expect(input).toBeInTheDocument();
   });

@@ -4,10 +4,14 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { $selectedLocation, moscow, prague } from '@/features/logic/locations.model';
+import {
+  $selectedLocation,
+  moscow,
+  prague,
+} from '@/features/locations/locations.model';
 
 import { Location } from './location';
-import { $time, $timeFormat } from '@/features/logic/time.model';
+import { $time, $timeFormat } from '@/features/time/time.model';
 import { format24hours } from '@/shared/lib/time-format';
 
 describe('location', () => {
@@ -17,6 +21,7 @@ describe('location', () => {
     const scope = fork({
       values: [
         [$time, time],
+        [$selectedLocation, moscow],
       ],
     });
 

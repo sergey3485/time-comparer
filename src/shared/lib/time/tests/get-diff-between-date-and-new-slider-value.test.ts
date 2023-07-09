@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 import { getDiffBetweenDateAndNewSliderValue } from '../get-diff-between-date-and-new-slider-value';
 
-import { prague } from '@/features/logic/locations.model';
+import { prague } from '@/features/locations/locations.model';
 
 describe('get difference between date and new slider value', () => {
   it('Должен вернуть разницу в милисекундах между старым и новым значением времени в выбранном часовом поясе', () => {

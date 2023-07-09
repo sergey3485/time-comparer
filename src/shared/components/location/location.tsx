@@ -16,11 +16,11 @@ import { formatInTimeZone } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
-import { $selectedLocation, changeSelectedLocation, deleteCity } from '@/features/logic/locations.model';
+import { $selectedLocation, changeSelectedLocation, deleteCity } from '@/features/locations/locations.model';
 import {
   $timeFormat,
   $time,
-} from '@/features/logic/time.model';
+} from '@/features/time/time.model';
 
 import {
   getMils,
@@ -29,7 +29,7 @@ import {
   isDayEqual,
 } from '@/shared/lib/time';
 
-import { isTwoLocationEqual } from '@/shared/lib/location/isTwoLocationEqual';
+import { isTwoLocationEqual } from '@/shared/lib/location/is-two-location-equal';
 
 import { TimeSlider } from '@/shared/components/time-slider';
 

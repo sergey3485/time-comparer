@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { $inputValue, changeInputValue } from '@/features/logic/locations.model';
+import { $inputValue, changeInputValue } from '@/features/locations/locations.model';
 
 import { Input } from './input';
 

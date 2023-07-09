@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { $currentTime, $timeFormat, changeTimeFormat } from '@/features/logic/time.model';
+import { $currentTime, $timeFormat, changeTimeFormat } from '@/features/time/time.model';
 import { Header } from './header';
 
 import { TimeFormat, format24hours, format12hours } from '@/shared/lib/time-format';
@@ -56,7 +56,7 @@ describe('header', () => {
 
     await allSettled(changeTimeFormat, { scope, params: format12hours });
 
-    const changedTime = screen.queryByText('12:24 pm');
+    const changedTime = screen.queryByText('12:24 PM');
 
     expect(changedTime).toBeInTheDocument();
   });

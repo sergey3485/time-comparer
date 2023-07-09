@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
 import { fork, allSettled } from 'effector';
-import { $currentTime, $time } from '../logic/time.model';
+import { $currentTime, $time } from '../time/time.model';
 import { changeTimeToCurrentTime } from './time-indicator.model';
 
 describe('time-indicator', () => {

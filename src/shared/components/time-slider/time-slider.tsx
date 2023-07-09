@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import {
   changeTimeBySlider,
-} from '@/features/logic/time.model';
+} from '@/features/time/time.model';
 
 export interface TimeSliderProps {
   /**

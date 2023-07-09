@@ -13,7 +13,7 @@ import {
   $locationVariants,
   changeInputValue,
   addLocation,
-} from '@/features/logic/locations.model';
+} from '@/features/locations/locations.model';
 
 export const Input = (): JSX.Element => {
   const {

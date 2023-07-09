@@ -6,7 +6,7 @@ import {
   $currentTime,
   $timeFormat,
   $time,
-} from '@/features/logic/time.model';
+} from '@/features/time/time.model';
 
 export const changeTimeToCurrentTime = createEvent();
 export const startInterval = createEvent();

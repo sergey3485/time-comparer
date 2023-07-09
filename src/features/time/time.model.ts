@@ -7,7 +7,7 @@ import { City } from 'worldcities/lib/city';
 
 import { getDiffBetweenDateAndNewSliderValue } from '@/shared/lib/time/get-diff-between-date-and-new-slider-value';
 
-import { $selectedLocation } from './locations.model';
+import { $selectedLocation } from '../locations/locations.model';
 import { TimeFormat, format24hours } from '@/shared/lib/time-format';
 
 export const $time = createStore<Date>(new Date());

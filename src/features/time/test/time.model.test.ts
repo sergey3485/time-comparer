@@ -5,12 +5,12 @@ import { fork, allSettled } from 'effector';
 import {
   changeTimeBySlider,
   $time,
-} from './time.model';
+} from '../time.model';
 
 import {
   $selectedLocation,
   prague,
-} from './locations.model';
+} from '../../locations/locations.model';
 
 describe('time model', () => {
   describe('слайдер', () => {

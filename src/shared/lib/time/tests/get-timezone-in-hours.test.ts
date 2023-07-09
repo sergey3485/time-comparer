@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { moscow } from '@/features/logic/locations.model';
+import { moscow } from '@/features/locations/locations.model';
 
 import { getTimezoneInHours } from '../get-timezone-in-hours';
 

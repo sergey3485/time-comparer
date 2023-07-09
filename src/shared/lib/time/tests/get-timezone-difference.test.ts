@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { prague, moscow } from '@/features/logic/locations.model';
+import { prague, moscow } from '@/features/locations/locations.model';
 
 import { getTimezoneDifference } from '../get-timezone-difference';
 

@@ -4,10 +4,10 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { prague } from '@/features/logic/locations.model';
+import { prague } from '@/features/locations/locations.model';
 
 import { TimeSlider } from './time-slider';
-import { $time } from '@/features/logic/time.model';
+import { $time } from '@/features/time/time.model';
 import { getMils } from '@/shared/lib/time/get-mils';
 
 describe('slider', () => {

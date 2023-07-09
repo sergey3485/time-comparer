@@ -6,7 +6,8 @@
       "@/features/*": ["src/features/*"],
       "@/layout/*": ["src/layout/*"],
       "@/shared/*": ["src/shared/*"],
-      "@/public/*": ["public/*"]
+      "@/public/*": ["public/*"],
+      "@/widgets/*": ["src/widgets/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,

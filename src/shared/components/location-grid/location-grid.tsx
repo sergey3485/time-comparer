@@ -15,7 +15,7 @@ import {
   changeInputValue,
   createInput,
   $isVisibleInput,
-} from '@/features/logic/locations.model';
+} from '@/features/locations/locations.model';
 
 export const LocationGrid = (): JSX.Element => {
   const {

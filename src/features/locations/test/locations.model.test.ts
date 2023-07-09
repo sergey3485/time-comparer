@@ -13,7 +13,7 @@ import {
   toki,
   deleteCity,
   $selectedLocation,
-} from './locations.model';
+} from '../locations.model';
 
 describe('locations model', () => {
   describe('Поиск городов', () => {
