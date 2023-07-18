@@ -4,10 +4,11 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { $currentTime, $timeFormat, changeTimeFormat } from '@/features/time/time.model';
 import { Header } from './header';
 
 import { TimeFormat, format24hours, format12hours } from '@/shared/lib/time-format';
+import { $currentTime, $timeFormat } from '@/entities/time';
+import { changeTimeFormat } from '@/features/change-time-format';
 
 describe('header', () => {
   it('Должен отображать кнопки смены формата времени', () => {

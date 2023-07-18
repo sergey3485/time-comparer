@@ -16,12 +16,6 @@ import { formatInTimeZone } from 'date-fns-tz';
 
 import { City } from 'worldcities/lib/city';
 
-import { $selectedLocation, changeSelectedLocation, deleteCity } from '@/features/locations/locations.model';
-import {
-  $timeFormat,
-  $time,
-} from '@/features/time/time.model';
-
 import {
   getMils,
   getTimezoneDifference,
@@ -32,6 +26,10 @@ import {
 import { isTwoLocationEqual } from '@/shared/lib/location/is-two-location-equal';
 
 import { TimeSlider } from '@/shared/components/time-slider';
+import { $time, $timeFormat } from '@/entities/time';
+import { $selectedLocation } from '@/entities/location';
+import { changeSelectedLocation } from '@/features/change-selected-location';
+import { deleteCity } from '@/features/delete-location';
 
 export interface LocationProps {
   /**

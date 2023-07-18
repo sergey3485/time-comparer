@@ -1,12 +1,7 @@
 import { combine, sample, createEvent } from 'effector';
 import { interval } from 'patronum';
 import { format } from 'date-fns';
-
-import {
-  $currentTime,
-  $timeFormat,
-  $time,
-} from '@/features/time/time.model';
+import { $currentTime, $time, $timeFormat } from '@/entities/time';
 
 export const changeTimeToCurrentTime = createEvent();
 export const startInterval = createEvent();

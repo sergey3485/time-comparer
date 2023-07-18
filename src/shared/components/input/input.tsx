@@ -7,13 +7,9 @@ import {
 import { useUnit } from 'effector-react';
 
 import { v4 as uuidv4 } from 'uuid';
-
 import {
-  $inputValue,
-  $locationVariants,
-  changeInputValue,
-  addLocation,
-} from '@/features/locations/locations.model';
+  $inputValue, $locationVariants, addLocation, changeInputValue,
+} from '@/features/add-new-location';
 
 export const Input = (): JSX.Element => {
   const {

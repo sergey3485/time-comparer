@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/app/*": ["src/app/*"],
+      "@/entities/*": ["src/entities/*"],
       "@/features/*": ["src/features/*"],
       "@/layout/*": ["src/layout/*"],
       "@/shared/*": ["src/shared/*"],

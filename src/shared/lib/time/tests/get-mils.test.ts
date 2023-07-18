@@ -1,7 +1,5 @@
 import { describe, it, expect } from 'vitest';
 
-import { prague } from '@/features/locations/locations.model';
-
 import { getMils } from '../get-mils';
 
 describe('get milliseconds', () => {

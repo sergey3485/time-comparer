@@ -1,22 +1,14 @@
-/* eslint-disable @typescript-eslint/indent */
 import {
-  sample, createEvent, createStore, createEffect,
+  sample, createEvent, createEffect,
 } from 'effector';
 
 import { City } from 'worldcities/lib/city';
 
 import { getDiffBetweenDateAndNewSliderValue } from '@/shared/lib/time/get-diff-between-date-and-new-slider-value';
 
-import { $selectedLocation } from '../locations/locations.model';
-import { TimeFormat, format24hours } from '@/shared/lib/time-format';
+import { $time } from '@/entities/time';
 
-export const $time = createStore<Date>(new Date());
-
-export const $currentTime = createStore(new Date());
-
-export const $timeFormat = createStore<TimeFormat>(format24hours);
-
-export const changeTimeFormat = createEvent<TimeFormat>();
+import { $selectedLocation } from '@/entities/location';
 
 export const changeTimeBySlider = createEvent<number>();
 
@@ -26,11 +18,6 @@ const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number, loc:
   const resultDate = data.date.getTime() + timeDif;
 
   return new Date(resultDate);
-});
-
-sample({
-  clock: changeTimeFormat,
-  target: $timeFormat,
 });
 
 sample({

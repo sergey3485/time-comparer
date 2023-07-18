@@ -1,19 +1,17 @@
 import { describe, it, expect } from 'vitest';
 
 import { fork, allSettled } from 'effector';
+import worldCities from 'worldcities';
 
 import {
-  $locationVariants,
-  $inputValue,
-  changeInputValue,
-  $locations,
-  addLocation,
-  prague,
-  moscow,
-  toki,
-  deleteCity,
-  $selectedLocation,
-} from '../locations.model';
+  $inputValue, $locationVariants, addLocation, changeInputValue,
+} from '@/features/add-new-location';
+import { $locations, $selectedLocation } from '@/entities/location';
+import { deleteCity } from '@/features/delete-location';
+
+const moscow = worldCities.getAllByName('moscow');
+const prague = worldCities.getAllByName('prague');
+const toki = worldCities.getAllByName('moscow');
 
 describe('locations model', () => {
   describe('Поиск городов', () => {

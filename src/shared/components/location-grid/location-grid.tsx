@@ -9,13 +9,8 @@ import {
 
 import { Input } from '@/shared/components/input';
 import { Location } from '@/shared/components/location';
-
-import {
-  $locations,
-  changeInputValue,
-  createInput,
-  $isVisibleInput,
-} from '@/features/locations/locations.model';
+import { $locations } from '@/entities/location';
+import { $isVisibleInput, changeInputValue, createInput } from '@/features/add-new-location';
 
 export const LocationGrid = (): JSX.Element => {
   const {

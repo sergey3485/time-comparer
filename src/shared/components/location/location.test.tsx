@@ -4,15 +4,12 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import {
-  $selectedLocation,
-  moscow,
-  prague,
-} from '@/features/locations/locations.model';
-
 import { Location } from './location';
-import { $time, $timeFormat } from '@/features/time/time.model';
 import { format24hours } from '@/shared/lib/time-format';
+import { $time, $timeFormat } from '@/entities/time';
+import { $selectedLocation } from '@/entities/location';
+
+const moscow = ;
 
 describe('location', () => {
   it('Должен рендерить карточку локации', () => {

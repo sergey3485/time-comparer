@@ -2,17 +2,10 @@ import { fork, allSettled } from 'effector';
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 
-import {
-  $locations,
-  createInput,
-  $isVisibleInput,
-  prague,
-  moscow,
-  $selectedLocation,
-} from '@/features/locations/locations.model';
-
 import { LocationGrid } from './location-grid';
 import { renderWithProviders } from '@/shared/lib/test-utils';
+import { $locations, $selectedLocation } from '@/entities/location';
+import { $isVisibleInput, createInput } from '@/features/add-new-location';
 
 describe('location grid', () => {
   it('должен иметь только кнопку, если локации пусты', () => {

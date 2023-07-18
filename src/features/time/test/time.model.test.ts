@@ -2,15 +2,14 @@ import { describe, it, expect } from 'vitest';
 
 import { fork, allSettled } from 'effector';
 
-import {
-  changeTimeBySlider,
-  $time,
-} from '../time.model';
+import worldCities from 'worldcities';
 
-import {
-  $selectedLocation,
-  prague,
-} from '../../locations/locations.model';
+import { City } from 'worldcities/lib/city';
+import { $time } from '@/entities/time';
+import { $selectedLocation } from '@/entities/location';
+import { changeTimeBySlider } from '@/features/change-time-by-slider';
+
+const prague = worldCities.getByName('prague') as City;
 
 describe('time model', () => {
   describe('слайдер', () => {
