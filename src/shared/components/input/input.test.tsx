@@ -4,9 +4,8 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { $inputValue, changeInputValue } from '@/features/locations/locations.model';
-
 import { Input } from './input';
+import { $inputValue, changeInputValue } from '@/features/add-new-location';
 
 describe('input', () => {
   it(' Должен содержать инпут', () => {

@@ -2,10 +2,14 @@ import { fork, allSettled } from 'effector';
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 
+import worldCities from 'worldcities';
 import { LocationGrid } from './location-grid';
 import { renderWithProviders } from '@/shared/lib/test-utils';
 import { $locations, $selectedLocation } from '@/entities/location';
 import { $isVisibleInput, createInput } from '@/features/add-new-location';
+
+const moscow = worldCities.getByName('moscow');
+const prague = worldCities.getByName('prague');
 
 describe('location grid', () => {
   it('должен иметь только кнопку, если локации пусты', () => {

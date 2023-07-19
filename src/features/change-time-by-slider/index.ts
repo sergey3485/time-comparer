@@ -1,1 +1,1 @@
-export * from './change-time-by-slider';
+export * from './change-time-by-slider.model';

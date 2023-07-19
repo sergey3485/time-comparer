@@ -1,1 +1,1 @@
-export * from './delete-location';
+export * from './delete-location.model';

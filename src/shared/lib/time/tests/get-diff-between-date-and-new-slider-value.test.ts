@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
 
+import worldCities from 'worldcities';
+import { City } from 'worldcities/lib/city';
 import { getDiffBetweenDateAndNewSliderValue } from '../get-diff-between-date-and-new-slider-value';
 
-import { prague } from '@/features/locations/locations.model';
+const prague = worldCities.getByName('prague') as City;
 
 describe('get difference between date and new slider value', () => {
   it('Должен вернуть разницу в милисекундах между старым и новым значением времени в выбранном часовом поясе', () => {

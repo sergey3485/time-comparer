@@ -1,1 +1,1 @@
-export * from './change-time-format';
+export * from './change-time-format.model';

@@ -2,11 +2,15 @@ import { fork } from 'effector';
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 
+import worldCities from 'worldcities';
+import { City } from 'worldcities/lib/city';
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
 import { TimeSlider } from './time-slider';
 import { getMils } from '@/shared/lib/time/get-mils';
 import { $time } from '@/entities/time';
+
+const prague = worldCities.getByName('prague') as City;
 
 describe('slider', () => {
   it('должен рендерить слайдер', () => {

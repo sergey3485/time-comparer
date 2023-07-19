@@ -1,1 +1,1 @@
-export * from './change-selected-location';
+export * from './change-selected-location.model';

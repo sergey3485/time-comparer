@@ -1,8 +1,11 @@
 import { describe, it, expect } from 'vitest';
-
-import { prague, moscow } from '@/features/locations/locations.model';
+import worldCities from 'worldcities';
+import { City } from 'worldcities/lib/city';
 
 import { getTimezoneDifference } from '../get-timezone-difference';
+
+const moscow = worldCities.getByName('moscow') as City;
+const prague = worldCities.getByName('prague') as City;
 
 describe('getTimezoneDifference', () => {
   it('должен возвращать разницу между двумя часовыми поясами', () => {
