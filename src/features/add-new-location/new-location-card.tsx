@@ -1,7 +1,10 @@
 import * as React from 'react';
 import {
   Box,
-  Input as InputChakra,
+  Input,
+  List,
+  ListItem,
+  Stack,
 } from '@chakra-ui/react';
 
 import { useUnit } from 'effector-react';
@@ -9,9 +12,9 @@ import { useUnit } from 'effector-react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   $inputValue, $locationVariants, addLocation, changeInputValue,
-} from '@/features/add-new-location';
+} from './add-new-location.model';
 
-export const Input = (): JSX.Element => {
+export const NewLocationCard = (): JSX.Element => {
   const {
     inputValue,
     locationVariants,
@@ -33,29 +36,33 @@ export const Input = (): JSX.Element => {
       height="158px"
       backgroundColor="white"
     >
-      <InputChakra size="md" padding={2} variant="flushed" value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="Write city" />
-      <Box
+      <Input size="md" padding={2} variant="flushed" value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="Write city" />
+
+      <List
         display="flex"
         flexDirection="column"
-        overflow="scroll"
+        overflow="auto"
         width="100%"
         height="100%"
-        role="list"
+        py="8px"
       >
         {locationVariants.map((loc) => (
-          <Box
+          <ListItem
             display="flex"
             key={`${loc.country.name}/${loc.name}`}
             width="100%"
-            padding="1px"
-            borderColor="neutral.neutral3"
+            py="6px"
+            px="12px"
+            cursor="pointer"
+            _hover={{ bg: 'gray.100' }}
             borderBottom="1px solid"
+            borderColor="gray.200"
             onClick={() => addNewLocation(loc)}
           >
-            {loc.name}
-          </Box>
+            {loc.name}, {loc.country.name}
+          </ListItem>
         ))}
-      </Box>
+      </List>
     </Box>
   );
 };

@@ -4,24 +4,17 @@ import { useUnit } from 'effector-react';
 
 import {
   SimpleGrid,
-  Button,
 } from '@chakra-ui/react';
 
-import { Input } from '@/shared/components/input';
 import { Location } from '@/shared/components/location';
 import { $locations } from '@/entities/location';
-import { $isVisibleInput, changeInputValue, createInput } from '@/features/add-new-location';
+import { AddNewLocationButton } from '@/features/add-new-location';
 
 export const LocationGrid = (): JSX.Element => {
   const {
     locations,
-    showInput,
-    isVisible,
   } = useUnit({
     locations: $locations,
-    changeInput: changeInputValue,
-    showInput: createInput,
-    isVisible: $isVisibleInput,
   });
 
   return (
@@ -43,17 +36,7 @@ export const LocationGrid = (): JSX.Element => {
         />
       ))}
 
-      {isVisible && <Input /> }
-
-      <Button
-        onClick={showInput}
-        variant="outline"
-        size="lg"
-        role="button"
-        colorScheme="blue"
-      >
-        add new
-      </Button>
+      <AddNewLocationButton />
     </SimpleGrid>
   );
 };

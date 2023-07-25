@@ -22,6 +22,6 @@ describe('изменение выбраной локации', () => {
 
     await allSettled(changeSelectedLocation, { scope, params: prague });
 
-    expect($selectedLocation).toStrictEqual(prague);
+    expect(scope.getState($selectedLocation)).toStrictEqual(prague);
   });
 });

@@ -49,6 +49,13 @@ sample({
   target: $selectedLocation,
 });
 
+sample({
+  clock: $locations,
+  filter: (locations) => locations.length === 0,
+  fn: () => null,
+  target: $selectedLocation,
+});
+
 const saveLocationsToLocalStorageFx = createEffect((locations: City[]) => {
   const savedLocationsToString = JSON.stringify(locations);
   localStorage.setItem('locations', savedLocationsToString);

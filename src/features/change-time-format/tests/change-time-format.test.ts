@@ -15,6 +15,6 @@ describe('change time format', () => {
 
     await allSettled(changeTimeFormat, { scope, params: format12hours });
 
-    expect($timeFormat).toStrictEqual('');
+    expect(scope.getState($timeFormat)).toBe(format12hours);
   });
 });

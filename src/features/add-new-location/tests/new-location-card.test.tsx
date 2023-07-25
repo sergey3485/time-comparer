@@ -4,14 +4,14 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { Input } from './input';
+import { NewLocationCard } from '../new-location-card';
 import { $inputValue, changeInputValue } from '@/features/add-new-location';
 
 describe('input', () => {
   it(' Должен содержать инпут', () => {
     const scope = fork();
 
-    renderWithProviders(<Input />, scope);
+    renderWithProviders(<NewLocationCard />, scope);
 
     const element = screen.queryByPlaceholderText('Write city');
 
@@ -27,7 +27,7 @@ describe('input', () => {
 
     await allSettled(changeInputValue, { scope, params: 'lo' });
 
-    renderWithProviders(<Input />, scope);
+    renderWithProviders(<NewLocationCard />, scope);
 
     const element = screen.queryByDisplayValue('lo');
 
@@ -41,7 +41,7 @@ describe('input', () => {
       ],
     });
 
-    renderWithProviders(<Input />, scope);
+    renderWithProviders(<NewLocationCard />, scope);
 
     const list = screen.queryByRole('list');
 

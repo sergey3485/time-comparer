@@ -37,12 +37,12 @@ describe('time indicator', () => {
 
     renderWithProviders(<TimeIndicator />, scope);
 
-    const element = screen.queryByRole('button');
+    const icon = screen.queryByLabelText('set time to current time');
 
-    expect(element).toBeInTheDocument();
+    expect(icon).toBeInTheDocument();
 
     await allSettled(changeTimeToCurrentTime, { scope });
 
-    expect(element).not.toBeInTheDocument();
+    expect(icon).not.toBeInTheDocument();
   });
 });
