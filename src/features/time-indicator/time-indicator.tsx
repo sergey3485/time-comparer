@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { RiRestartLine } from 'react-icons/ri';
 import { $formattedTime, $isVisibleRefresher, changeTimeToCurrentTime } from './time-indicator.model';
-import { changeTimeFormat } from '../change-time-format';
+import { changeTimeFormat } from '@/entities/time';
 import { format12hours, format24hours } from '@/shared/lib/time-format';
 
 export const TimeIndicator = () => {
