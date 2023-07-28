@@ -1,4 +1,4 @@
-import { Box, Button, Input } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { useUnit } from 'effector-react';
 import { RiAddLine } from 'react-icons/ri';
 
@@ -9,11 +9,9 @@ import { NewLocationCard } from './new-location-card';
 
 export const AddNewLocationButton = () => {
   const {
-    locations,
     showInput,
     isVisible,
   } = useUnit({
-    locations: $locations,
     changeInput: changeInputValue,
     showInput: createInput,
     isVisible: $isVisibleInput,

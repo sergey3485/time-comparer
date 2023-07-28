@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { RiCloseLine } from 'react-icons/ri';
 
 import {
   Box,
   Heading,
   Text,
   Stack,
-  IconButton,
   Tag,
 } from '@chakra-ui/react';
 

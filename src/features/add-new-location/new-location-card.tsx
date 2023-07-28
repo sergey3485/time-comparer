@@ -4,12 +4,9 @@ import {
   Input,
   List,
   ListItem,
-  Stack,
 } from '@chakra-ui/react';
 
 import { useUnit } from 'effector-react';
-
-import { v4 as uuidv4 } from 'uuid';
 import {
   $inputValue, $locationVariants, addLocation, changeInputValue,
 } from './add-new-location.model';

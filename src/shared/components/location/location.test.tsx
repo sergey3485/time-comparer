@@ -1,4 +1,4 @@
-import { fork, allSettled } from 'effector';
+import { fork } from 'effector';
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 
