@@ -25,11 +25,11 @@ import {
 
 import { isTwoLocationEqual } from '@/shared/lib/location/is-two-location-equal';
 
-import { TimeSlider } from '@/shared/components/time-slider';
+import { TimeSlider } from '@/features/change-time-by-slider/change-time-by-slider';
 import { $time, $timeFormat } from '@/entities/time';
 import { $selectedLocation } from '@/entities/location';
 import { changeSelectedLocation } from '@/features/change-selected-location';
-import { deleteCity } from '@/features/delete-location';
+import { DeleteLocationButton } from '@/features/delete-location';
 
 export interface LocationProps {
   /**
@@ -48,13 +48,11 @@ export const Location = (props: LocationProps): JSX.Element => {
     time,
     selectedLoc,
     selectLoc,
-    deleteLocation,
   } = useUnit({
     timeVariant: $timeFormat,
     time: $time,
     selectedLoc: $selectedLocation,
     selectLoc: changeSelectedLocation,
-    deleteLocation: deleteCity,
   });
 
   const timeZone = getTimezoneInHours(location.timezone);
@@ -86,19 +84,7 @@ export const Location = (props: LocationProps): JSX.Element => {
       role="listitem"
       position="relative"
     >
-      <IconButton
-        position="absolute"
-        top="4px"
-        right="4px"
-        onClick={() => deleteLocation(location)}
-        aria-label="delete location"
-        variant="ghost"
-        size="xs"
-        colorScheme="blackAlpha"
-        borderRadius="50%"
-      >
-        <RiCloseLine />
-      </IconButton>
+      <DeleteLocationButton location={location} />
 
       <Stack
         direction="column"
