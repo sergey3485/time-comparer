@@ -6,7 +6,7 @@ import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { TimeSlider } from './time-slider';
+import { TimeSlider } from '../change-time-by-slider';
 import { getMils } from '@/shared/lib/time/get-mils';
 import { $time } from '@/entities/time';
 
