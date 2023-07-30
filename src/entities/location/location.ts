@@ -2,6 +2,7 @@ import {
   createStore,
   sample,
   createEffect,
+  createEvent,
 } from 'effector';
 
 import { City } from 'worldcities/lib/city';
@@ -10,6 +11,13 @@ import { appStarted } from '@/shared/app.model';
 export const $locations = createStore<City[]>([]);
 
 export const $selectedLocation = createStore<City | null>(null);
+
+export const changeSelectedLocation = createEvent<City>();
+
+sample({
+  clock: changeSelectedLocation,
+  target: $selectedLocation,
+});
 
 const getLocationsFromLocalStorageFx = createEffect(() => {
   const savedLocation = localStorage.getItem('locations');

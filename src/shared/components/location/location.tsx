@@ -25,8 +25,7 @@ import { isTwoLocationEqual } from '@/shared/lib/location/is-two-location-equal'
 
 import { TimeSlider } from '@/features/change-time-by-slider/change-time-by-slider';
 import { $time, $timeFormat } from '@/entities/time';
-import { $selectedLocation } from '@/entities/location';
-import { changeSelectedLocation } from '@/features/change-selected-location';
+import { $selectedLocation, changeSelectedLocation } from '@/entities/location';
 import { DeleteLocationButton } from '@/features/delete-location';
 
 export interface LocationProps {

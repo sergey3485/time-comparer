@@ -4,8 +4,7 @@ import { fork, allSettled } from 'effector';
 import worldCities from 'worldcities';
 
 import { City } from 'worldcities/lib/city';
-import { changeSelectedLocation } from '@/features/change-selected-location';
-import { $locations, $selectedLocation } from '@/entities/location';
+import { $locations, $selectedLocation, changeSelectedLocation } from '@/entities/location';
 
 const moscow = worldCities.getByName('moscow') as City;
 const prague = worldCities.getByName('prague') as City;

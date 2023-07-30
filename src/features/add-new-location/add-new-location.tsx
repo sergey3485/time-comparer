@@ -2,8 +2,6 @@ import { Box, Button } from '@chakra-ui/react';
 import { useUnit } from 'effector-react';
 import { RiAddLine } from 'react-icons/ri';
 
-import { $locations } from '@/entities/location';
-
 import { changeInputValue, createInput, $isVisibleInput } from './add-new-location.model';
 import { NewLocationCard } from './new-location-card';
 
