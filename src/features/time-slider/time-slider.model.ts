@@ -18,10 +18,10 @@ const changeTimeBySliderFx = createEffect((data: { date: Date; dif: number; loc:
 
 sample({
   clock: changeTimeBySlider,
-  source: { $time, $selectedLocation },
+  source: { time: $time, selectedLocation: $selectedLocation },
   fn: (data, dif) => ({
-    date: data.$time,
-    loc: data.$selectedLocation,
+    date: data.time,
+    loc: data.selectedLocation,
     dif,
   }),
   target: changeTimeBySliderFx,

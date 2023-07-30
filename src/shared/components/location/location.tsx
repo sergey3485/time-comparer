@@ -50,6 +50,10 @@ export const Location = (props: LocationProps): JSX.Element => {
 
   const isDayEqual = isDayEqualInTwoLocations(selectedLoc as City, location, time);
 
+  const onLocationSelect = () => {
+    selectLoc(location);
+  };
+
   return (
     <Box
       display="flex"
@@ -58,7 +62,7 @@ export const Location = (props: LocationProps): JSX.Element => {
       flexDirection="column"
       width="100%"
       height="158px"
-      onPointerDown={() => selectLoc(location)}
+      onPointerDown={onLocationSelect}
       border="2px solid"
       background="white"
       borderColor={isSelected ? 'blue.500' : 'white'}
@@ -102,7 +106,7 @@ export const Location = (props: LocationProps): JSX.Element => {
               </Tag>
             )}
           </Stack>
-          <TimeSlider timeValue={milsValue} changeLocation={() => selectLoc(location)} />
+          <TimeSlider timeValue={milsValue} changeLocation={onLocationSelect} />
         </Box>
       </Stack>
     </Box>

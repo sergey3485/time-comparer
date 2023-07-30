@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import { $currentTime, $time } from '@/entities/time';
 
-import { changeTimeToCurrentTime } from './time-indicator.model';
+import { changeTimeToCurrentTime } from '../time-indicator.model';
 
 describe('time-indicator', () => {
   it('Должен менять время на текущее', async () => {

@@ -5,20 +5,21 @@ import {
 import { useUnit } from 'effector-react';
 import { RiRestartLine } from 'react-icons/ri';
 
-import { changeTimeFormat } from '@/entities/time';
+import { $timeFormat, changeTimeFormat } from '@/entities/time';
 
 import { format12hours, format24hours } from '@/shared/lib/time-format';
 
-import { $formattedTime, $isVisibleRefresher, changeTimeToCurrentTime } from './time-indicator.model';
+import { $formattedTime, $isRefreshButtonVisible, changeTimeToCurrentTime } from './time-indicator.model';
 
 export const TimeIndicator = () => {
   const {
-    isVisibleRefresher, formattedTime, changeTime, changeTimeFormatOnClick,
+    isVisibleRefresher, formattedTime, changeTime, changeTimeFormatOnClick, currentFormat,
   } = useUnit({
     formattedTime: $formattedTime,
-    isVisibleRefresher: $isVisibleRefresher,
+    isVisibleRefresher: $isRefreshButtonVisible,
     changeTime: changeTimeToCurrentTime,
     changeTimeFormatOnClick: changeTimeFormat,
+    currentFormat: $timeFormat,
   });
 
   return (
@@ -41,11 +42,11 @@ export const TimeIndicator = () => {
       </Box>
 
       <Stack spacing="2px" direction="row" marginLeft="2">
-        <Button onClick={() => changeTimeFormatOnClick(format12hours)} colorScheme="blue">
+        <Button isDisabled={currentFormat === format12hours} onClick={() => changeTimeFormatOnClick(format12hours)} colorScheme="blue">
           12
         </Button>
 
-        <Button onClick={() => changeTimeFormatOnClick(format24hours)} colorScheme="blue">
+        <Button isDisabled={currentFormat === format24hours} onClick={() => changeTimeFormatOnClick(format24hours)} colorScheme="blue">
           24
         </Button>
       </Stack>

@@ -26,7 +26,7 @@
     "date-fns-tz": "^2.0.0",
     "effector": "22.4.1",
     "effector-react": "22.3.4",
-    "effector-storage": "5.0.1",
+    "effector-storage": "^6.1.1",
     "eslint-config-react-app": "^7.0.1",
     "framer-motion": "^10.12.16",
     "patronum": "^1.18.0",

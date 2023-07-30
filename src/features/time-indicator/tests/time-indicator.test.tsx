@@ -6,8 +6,8 @@ import { $currentTime, $time } from '@/entities/time';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { TimeIndicator } from './time-indicator';
-import { changeTimeToCurrentTime } from './time-indicator.model';
+import { TimeIndicator } from '../time-indicator';
+import { changeTimeToCurrentTime } from '../time-indicator.model';
 
 describe('time indicator', () => {
   it('отображение текущего времени', () => {

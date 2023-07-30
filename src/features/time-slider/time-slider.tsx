@@ -21,12 +21,20 @@ export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
     changeSliderValue: changeTimeBySlider,
   });
 
+  // onChangeStart вызывается после onChange, поэтому нужно сделать обработчик с правильным порядком вызовов
+  const onSliderChange = (value: number) => {
+    changeLocation();
+
+    changeSliderValue(value);
+  };
+
   return (
     <Slider
       step={900000}
       max={86400000 - 900000}
       min={0}
-      onChange={changeSliderValue}
+      onChange={onSliderChange}
+      // onChangeStart вызывается после onChange
       onChangeStart={changeLocation}
       value={timeValue}
       colorScheme="blue"
