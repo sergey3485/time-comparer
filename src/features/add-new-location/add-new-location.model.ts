@@ -1,17 +1,10 @@
 import {
-  sample,
-  createEvent,
-  createStore,
-  createEffect,
+  createEffect, createEvent, createStore, sample,
 } from 'effector';
-
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 
-import {
-  $locations,
-  $selectedLocation,
-} from '@/entities/location';
+import { $locations, $selectedLocation } from '@/entities/location';
 
 export const $inputValue = createStore<string>('');
 

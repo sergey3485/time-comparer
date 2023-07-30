@@ -1,9 +1,8 @@
-import { describe, it, expect } from 'vitest';
-
-import { fork, allSettled } from 'effector';
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
-
 import { City } from 'worldcities/lib/city';
+
 import { $locations, $selectedLocation, changeSelectedLocation } from '@/entities/location';
 
 const moscow = worldCities.getByName('moscow') as City;

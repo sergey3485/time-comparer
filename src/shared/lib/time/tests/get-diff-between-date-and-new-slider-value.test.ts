@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
-
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
+
 import { getDiffBetweenDateAndNewSliderValue } from '../get-diff-between-date-and-new-slider-value';
 
 const prague = worldCities.getByName('prague') as City;

@@ -1,12 +1,11 @@
-import { describe, it, expect } from 'vitest';
-
-import { fork, allSettled } from 'effector';
-
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
-
 import { City } from 'worldcities/lib/city';
-import { $time } from '@/entities/time';
+
 import { $selectedLocation } from '@/entities/location';
+import { $time } from '@/entities/time';
+
 import { changeTimeBySlider } from '../time-slider.model';
 
 const prague = worldCities.getByName('prague') as City;

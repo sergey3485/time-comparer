@@ -2,14 +2,11 @@ import { Box, Button } from '@chakra-ui/react';
 import { useUnit } from 'effector-react';
 import { RiAddLine } from 'react-icons/ri';
 
-import { changeInputValue, createInput, $isVisibleInput } from './add-new-location.model';
+import { $isVisibleInput, changeInputValue, createInput } from './add-new-location.model';
 import { NewLocationCard } from './new-location-card';
 
 export const AddNewLocationButton = () => {
-  const {
-    showInput,
-    isVisible,
-  } = useUnit({
+  const { showInput, isVisible } = useUnit({
     changeInput: changeInputValue,
     showInput: createInput,
     isVisible: $isVisibleInput,
@@ -20,21 +17,12 @@ export const AddNewLocationButton = () => {
       {isVisible && <NewLocationCard />}
 
       {!isVisible && (
-        <Button
-          onClick={showInput}
-          variant="ghost"
-          size="lg"
-          colorScheme="blue"
-          height="158px"
-          flexDirection="column"
-        >
+        <Button onClick={showInput} variant="ghost" size="lg" colorScheme="blue" height="158px" flexDirection="column">
           <Box as="span" fontSize="5xl">
             <RiAddLine fontSize="inherit" />
           </Box>
 
-          <Box as="span">
-            Add new location
-          </Box>
+          <Box as="span">Add new location</Box>
         </Button>
       )}
     </>

@@ -1,6 +1,7 @@
-import { combine, sample, createEvent } from 'effector';
-import { interval } from 'patronum';
 import { format } from 'date-fns';
+import { combine, createEvent, sample } from 'effector';
+import { interval } from 'patronum';
+
 import { $currentTime, $time, $timeFormat } from '@/entities/time';
 
 export const changeTimeToCurrentTime = createEvent();
@@ -8,7 +9,10 @@ export const startInterval = createEvent();
 
 export const $formattedTime = combine([$currentTime, $timeFormat], ([date, dateFormat]) => format(date, dateFormat));
 
-export const $isVisibleRefresher = combine([$currentTime, $time], ([currentTime, time]) => currentTime.toString() !== time.toString());
+export const $isVisibleRefresher = combine(
+  [$currentTime, $time],
+  ([currentTime, time]) => currentTime.toString() !== time.toString(),
+);
 
 sample({
   clock: changeTimeToCurrentTime,

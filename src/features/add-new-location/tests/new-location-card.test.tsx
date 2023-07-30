@@ -1,11 +1,11 @@
-import { fork, allSettled } from 'effector';
-import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
-import { NewLocationCard } from '../new-location-card';
 import { $inputValue, changeInputValue } from '../add-new-location.model';
+import { NewLocationCard } from '../new-location-card';
 
 describe('input', () => {
   it(' Должен содержать инпут', () => {
@@ -20,9 +20,7 @@ describe('input', () => {
 
   it('должен менять значение инпута', async () => {
     const scope = fork({
-      values: [
-        [$inputValue, ''],
-      ],
+      values: [[$inputValue, '']],
     });
 
     await allSettled(changeInputValue, { scope, params: 'lo' });
@@ -36,9 +34,7 @@ describe('input', () => {
 
   it('Не должно быть предложеных вариантов локаций, если значение имнута меньше 3 символов', async () => {
     const scope = fork({
-      values: [
-        [$inputValue, ''],
-      ],
+      values: [[$inputValue, '']],
     });
 
     renderWithProviders(<NewLocationCard />, scope);

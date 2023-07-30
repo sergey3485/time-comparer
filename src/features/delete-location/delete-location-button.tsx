@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { IconButton } from '@chakra-ui/react';
-import { RiCloseLine } from 'react-icons/ri';
 import { useUnit } from 'effector-react';
-
+import { RiCloseLine } from 'react-icons/ri';
 import { City } from 'worldcities/lib/city';
+
 import { deleteCity } from './delete-location.model';
 
 export interface DeleteLocationButtonProps {
@@ -11,13 +11,9 @@ export interface DeleteLocationButtonProps {
 }
 
 export const DeleteLocationButton = (props: DeleteLocationButtonProps): JSX.Element => {
-  const {
-    location,
-  } = props;
+  const { location } = props;
 
-  const {
-    deleteLocation,
-  } = useUnit({
+  const { deleteLocation } = useUnit({
     deleteLocation: deleteCity,
   });
   return (

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 

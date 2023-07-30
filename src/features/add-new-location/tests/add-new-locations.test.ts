@@ -1,12 +1,12 @@
-import { describe, it, expect } from 'vitest';
-
-import { fork, allSettled } from 'effector';
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
+
+import { $locations, $selectedLocation } from '@/entities/location';
 
 import {
   $inputValue, $locationVariants, addLocation, changeInputValue,
 } from '../add-new-location.model';
-import { $locations, $selectedLocation } from '@/entities/location';
 
 const prague = worldCities.getByName('prague');
 
@@ -41,9 +41,7 @@ describe('Поиск городов', () => {
 describe('Добавление новой локации', () => {
   it('Должен добавить локацию в список, если такой еще нет', async () => {
     const scope = fork({
-      values: [
-        [$locations, []],
-      ],
+      values: [[$locations, []]],
     });
 
     await allSettled(addLocation, { scope, params: prague });
@@ -54,9 +52,7 @@ describe('Добавление новой локации', () => {
 
   it('Должен при добавлении новой локации обнулять список вариантов локаций и значение инпута', async () => {
     const scope = fork({
-      values: [
-        [$locationVariants, [prague]],
-      ],
+      values: [[$locationVariants, [prague]]],
     });
 
     await allSettled(addLocation, { scope, params: prague });
@@ -67,9 +63,7 @@ describe('Добавление новой локации', () => {
 
   it('Должен, если список локаций пустой, ставить выбранной локацией, только что добавленную', async () => {
     const scope = fork({
-      values: [
-        [$selectedLocation, null],
-      ],
+      values: [[$selectedLocation, null]],
     });
 
     await allSettled(addLocation, { scope, params: prague });

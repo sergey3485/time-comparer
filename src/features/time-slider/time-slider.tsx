@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { useUnit } from 'effector-react';
 import {
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
+  Slider, SliderFilledTrack, SliderThumb, SliderTrack,
 } from '@chakra-ui/react';
+import { useUnit } from 'effector-react';
 
 import { changeTimeBySlider } from './time-slider.model';
 
@@ -18,14 +15,9 @@ export interface TimeSliderProps {
 }
 
 export const TimeSlider = (props: TimeSliderProps): JSX.Element => {
-  const {
-    timeValue,
-    changeLocation,
-  } = props;
+  const { timeValue, changeLocation } = props;
 
-  const {
-    changeSliderValue,
-  } = useUnit({
+  const { changeSliderValue } = useUnit({
     changeSliderValue: changeTimeBySlider,
   });
 

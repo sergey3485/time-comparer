@@ -1,12 +1,15 @@
-import { fork, allSettled } from 'effector';
-import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
-
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
-import { LocationGrid } from './location-grid';
-import { renderWithProviders } from '@/shared/lib/test-utils';
-import { $locations, $selectedLocation } from '@/entities/location';
+
 import { $isVisibleInput, createInput } from '@/features/add-new-location';
+
+import { $locations, $selectedLocation } from '@/entities/location';
+
+import { renderWithProviders } from '@/shared/lib/test-utils';
+
+import { LocationGrid } from './location-grid';
 
 const moscow = worldCities.getByName('moscow');
 const prague = worldCities.getByName('prague');
@@ -49,9 +52,7 @@ describe('location grid', () => {
 
   it('Должен рендерить инпут, если была нажата кнопка добавления новой локации', async () => {
     const scope = fork({
-      values: [
-        [$isVisibleInput, false],
-      ],
+      values: [[$isVisibleInput, false]],
     });
 
     renderWithProviders(<LocationGrid />, scope);

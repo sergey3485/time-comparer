@@ -1,6 +1,6 @@
-import { createStore, createEvent, sample } from 'effector';
+import { createEvent, createStore, sample } from 'effector';
 
-import { TimeFormat, format24hours } from '@/shared/lib/time-format';
+import { format24hours, TimeFormat } from '@/shared/lib/time-format';
 
 export const $time = createStore<Date>(new Date());
 

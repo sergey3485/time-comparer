@@ -1,22 +1,16 @@
 import * as React from 'react';
 import {
-  Box,
-  Input,
-  List,
-  ListItem,
+  Box, Input, List, ListItem,
 } from '@chakra-ui/react';
-
 import { useUnit } from 'effector-react';
+
 import {
   $inputValue, $locationVariants, addLocation, changeInputValue,
 } from './add-new-location.model';
 
 export const NewLocationCard = (): JSX.Element => {
   const {
-    inputValue,
-    locationVariants,
-    changeInput,
-    addNewLocation,
+    inputValue, locationVariants, changeInput, addNewLocation,
   } = useUnit({
     inputValue: $inputValue,
     locationVariants: $locationVariants,
@@ -25,24 +19,17 @@ export const NewLocationCard = (): JSX.Element => {
   });
 
   return (
-    <Box
-      display="flex"
-      borderRadius="4px"
-      flexDirection="column"
-      width="100%"
-      height="158px"
-      backgroundColor="white"
-    >
-      <Input size="md" padding={2} variant="flushed" value={inputValue} onChange={(event) => changeInput(event.currentTarget.value)} placeholder="Write city" />
+    <Box display="flex" borderRadius="4px" flexDirection="column" width="100%" height="158px" backgroundColor="white">
+      <Input
+        size="md"
+        padding={2}
+        variant="flushed"
+        value={inputValue}
+        onChange={(event) => changeInput(event.currentTarget.value)}
+        placeholder="Write city"
+      />
 
-      <List
-        display="flex"
-        flexDirection="column"
-        overflow="auto"
-        width="100%"
-        height="100%"
-        py="8px"
-      >
+      <List display="flex" flexDirection="column" overflow="auto" width="100%" height="100%" py="8px">
         {locationVariants.map((loc) => (
           <ListItem
             display="flex"

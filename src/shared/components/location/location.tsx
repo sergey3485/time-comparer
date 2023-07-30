@@ -1,32 +1,21 @@
 import * as React from 'react';
-
 import {
-  Box,
-  Heading,
-  Text,
-  Stack,
-  Tag,
+  Box, Heading, Stack, Tag, Text,
 } from '@chakra-ui/react';
-
-import { useUnit } from 'effector-react';
-
 import { formatInTimeZone } from 'date-fns-tz';
-
+import { useUnit } from 'effector-react';
 import { City } from 'worldcities/lib/city';
 
-import {
-  getMils,
-  getTimezoneDifference,
-  getTimezoneInHours,
-  isDayEqualInTwoLocations,
-} from '@/shared/lib/time';
+import { DeleteLocationButton } from '@/features/delete-location';
+import { TimeSlider } from '@/features/time-slider/time-slider';
+
+import { $selectedLocation, changeSelectedLocation } from '@/entities/location';
+import { $time, $timeFormat } from '@/entities/time';
 
 import { isTwoLocationEqual } from '@/shared/lib/location/is-two-location-equal';
-
-import { TimeSlider } from '@/features/time-slider/time-slider';
-import { $time, $timeFormat } from '@/entities/time';
-import { $selectedLocation, changeSelectedLocation } from '@/entities/location';
-import { DeleteLocationButton } from '@/features/delete-location';
+import {
+  getMils, getTimezoneDifference, getTimezoneInHours, isDayEqualInTwoLocations,
+} from '@/shared/lib/time';
 
 export interface LocationProps {
   /**
@@ -36,15 +25,10 @@ export interface LocationProps {
 }
 
 export const Location = (props: LocationProps): JSX.Element => {
-  const {
-    location,
-  } = props;
+  const { location } = props;
 
   const {
-    timeVariant,
-    time,
-    selectedLoc,
-    selectLoc,
+    timeVariant, time, selectedLoc, selectLoc,
   } = useUnit({
     timeVariant: $timeFormat,
     time: $time,
@@ -83,34 +67,40 @@ export const Location = (props: LocationProps): JSX.Element => {
     >
       <DeleteLocationButton location={location} />
 
-      <Stack
-        direction="column"
-        spacing="2px"
-        flex="1"
-      >
-        <Box
-          display="flex"
-          width="100%"
-          justifyContent="space-between"
-        >
+      <Stack direction="column" spacing="2px" flex="1">
+        <Box display="flex" width="100%" justifyContent="space-between">
           <Heading size="sm" fontWeight={500} color="text.primary">
-            {location.name},  {location.country.name}
+            {location.name}, {location.country.name}
           </Heading>
         </Box>
 
-        <Box
-          display="flex"
-          justifyContent="space-between"
-        >
-          <Text fontSize="sm" fontWeight={500} color="gray.500" textAlign="start">GMT{timeZone > 0 ? `+${timeZone}` : timeZone}</Text>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="sm" fontWeight={500} color="gray.500" textAlign="start">
+            GMT{timeZone > 0 ? `+${timeZone}` : timeZone}
+          </Text>
         </Box>
 
-        <Text fontSize="sm" fontWeight={500} color={isDayEqual ? 'gray.500' : 'red'} textAlign="start">{day}</Text>
+        <Text fontSize="sm" fontWeight={500} color={isDayEqual ? 'gray.500' : 'red'} textAlign="start">
+          {day}
+        </Text>
 
         <Box mt="auto">
           <Stack direction="row" alignItems="center">
-            <Text style={{ fontVariantNumeric: 'tabular-nums slashed-zero' }} letterSpacing="-1.5px" fontSize="3xl" fontWeight={500} color="blackAlpha.900" textAlign="start">{currentTime}</Text>
-            {!isSelected && <Tag size="md" variant="subtle" colorScheme={timezoneDifference >= 0 ? 'green' : 'red'} textAlign="start">{timezoneDifference >= 0 ? `+${timezoneDifference}` : `${timezoneDifference}`} H</Tag>}
+            <Text
+              style={{ fontVariantNumeric: 'tabular-nums slashed-zero' }}
+              letterSpacing="-1.5px"
+              fontSize="3xl"
+              fontWeight={500}
+              color="blackAlpha.900"
+              textAlign="start"
+            >
+              {currentTime}
+            </Text>
+            {!isSelected && (
+              <Tag size="md" variant="subtle" colorScheme={timezoneDifference >= 0 ? 'green' : 'red'} textAlign="start">
+                {timezoneDifference >= 0 ? `+${timezoneDifference}` : `${timezoneDifference}`} H
+              </Tag>
+            )}
           </Stack>
           <TimeSlider timeValue={milsValue} changeLocation={() => selectLoc(location)} />
         </Box>

@@ -1,15 +1,16 @@
-import { fork } from 'effector';
-import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
-
+import { fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
+
+import { $selectedLocation } from '@/entities/location';
+import { $time, $timeFormat } from '@/entities/time';
+
 import { renderWithProviders } from '@/shared/lib/test-utils';
+import { format24hours } from '@/shared/lib/time-format';
 
 import { Location } from './location';
-import { format24hours } from '@/shared/lib/time-format';
-import { $time, $timeFormat } from '@/entities/time';
-import { $selectedLocation } from '@/entities/location';
 
 const moscow = worldCities.getByName('moscow');
 const prague = worldCities.getByName('prague') as City;

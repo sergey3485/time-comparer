@@ -1,8 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 
-import { fork, allSettled } from 'effector';
-import { changeTimeToCurrentTime } from './time-indicator.model';
 import { $currentTime, $time } from '@/entities/time';
+
+import { changeTimeToCurrentTime } from './time-indicator.model';
 
 describe('time-indicator', () => {
   it('Должен менять время на текущее', async () => {

@@ -1,21 +1,20 @@
-import { fork, allSettled } from 'effector';
-import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
+
+import { $currentTime, $time } from '@/entities/time';
 
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
 import { TimeIndicator } from './time-indicator';
 import { changeTimeToCurrentTime } from './time-indicator.model';
-import { $currentTime, $time } from '@/entities/time';
 
 describe('time indicator', () => {
   it('отображение текущего времени', () => {
     const currentDate = new Date(2023, 0, 1, 12, 24);
 
     const scope = fork({
-      values: [
-        [$currentTime, currentDate],
-      ],
+      values: [[$currentTime, currentDate]],
     });
 
     renderWithProviders(<TimeIndicator />, scope);

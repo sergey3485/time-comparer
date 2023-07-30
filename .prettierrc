@@ -6,5 +6,32 @@
   "trailingComma": "all",
   "tabWidth": 2,
   "printWidth": 120,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "importOrderTypeScriptVersion": "5.0.0",
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "decorators-legacy"
+  ],
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "^(react/(.*)$)|^(react$)",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@/pages/(.*)$",
+    "",
+    "^@/layouts/(.*)$",
+    "",
+    "^@/features/(.*)$",
+    "",
+    "^@/entities/(.*)$",
+    "",
+    "^@/shared/(.*)$",
+    "",
+    "^[./]"
+  ]
 }

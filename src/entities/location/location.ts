@@ -1,11 +1,8 @@
 import {
-  createStore,
-  sample,
-  createEffect,
-  createEvent,
+  createEffect, createEvent, createStore, sample,
 } from 'effector';
-
 import { City } from 'worldcities/lib/city';
+
 import { appStarted } from '@/shared/app.model';
 
 export const $locations = createStore<City[]>([]);
@@ -22,16 +19,16 @@ sample({
 const getLocationsFromLocalStorageFx = createEffect(() => {
   const savedLocation = localStorage.getItem('locations');
 
-  const parsedLocations = savedLocation ? JSON.parse(savedLocation) as City[] : null;
+  const parsedLocations = savedLocation ? (JSON.parse(savedLocation) as City[]) : null;
 
-  const savedLocationToJson = parsedLocations || [] as City[];
+  const savedLocationToJson = parsedLocations || ([] as City[]);
 
   return savedLocationToJson;
 });
 
 const getSelectedLocationFx = createEffect(() => {
   const savedSelectedLocation = localStorage.getItem('selectedLocation');
-  const parsedData = savedSelectedLocation ? JSON.parse(savedSelectedLocation) as City : null;
+  const parsedData = savedSelectedLocation ? (JSON.parse(savedSelectedLocation) as City) : null;
 
   const savedSelectedLocationJson = parsedData || null;
   return savedSelectedLocationJson;

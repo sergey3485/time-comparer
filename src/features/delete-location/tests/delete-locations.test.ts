@@ -1,8 +1,9 @@
-import { describe, it, expect } from 'vitest';
-
-import { fork, allSettled } from 'effector';
+import { allSettled, fork } from 'effector';
+import { describe, expect, it } from 'vitest';
 import worldCities from 'worldcities';
+
 import { $locations, $selectedLocation } from '@/entities/location';
+
 import { deleteCity } from '../delete-location.model';
 
 const moscow = worldCities.getByName('moscow');
@@ -12,9 +13,7 @@ const toki = worldCities.getByName('toki');
 describe('Удаление локации', () => {
   it('Должен удалить город из списка городов', async () => {
     const scope = fork({
-      values: [
-        [$locations, [prague]],
-      ],
+      values: [[$locations, [prague]]],
     });
 
     await allSettled(deleteCity, { scope, params: prague });
