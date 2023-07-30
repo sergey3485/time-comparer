@@ -7,7 +7,7 @@ import {
   SliderThumb,
 } from '@chakra-ui/react';
 
-import { changeTimeBySlider } from '@/features/change-time-by-slider';
+import { changeTimeBySlider } from '@/features/time-slider';
 
 export interface TimeSliderProps {
   /**

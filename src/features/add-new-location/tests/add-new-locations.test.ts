@@ -5,7 +5,7 @@ import worldCities from 'worldcities';
 
 import {
   $inputValue, $locationVariants, addLocation, changeInputValue,
-} from '@/features/add-new-location';
+} from '../add-new-location.model';
 import { $locations, $selectedLocation } from '@/entities/location';
 
 const prague = worldCities.getByName('prague');

@@ -7,7 +7,7 @@ import worldCities from 'worldcities';
 import { City } from 'worldcities/lib/city';
 import { $time } from '@/entities/time';
 import { $selectedLocation } from '@/entities/location';
-import { changeTimeBySlider } from '@/features/change-time-by-slider';
+import { changeTimeBySlider } from '../time-slider.model';
 
 const prague = worldCities.getByName('prague') as City;
 

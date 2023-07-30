@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 import { renderWithProviders } from '@/shared/lib/test-utils';
 
 import { NewLocationCard } from '../new-location-card';
-import { $inputValue, changeInputValue } from '@/features/add-new-location';
+import { $inputValue, changeInputValue } from '../add-new-location.model';
 
 describe('input', () => {
   it(' Должен содержать инпут', () => {

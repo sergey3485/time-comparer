@@ -23,7 +23,7 @@ import {
 
 import { isTwoLocationEqual } from '@/shared/lib/location/is-two-location-equal';
 
-import { TimeSlider } from '@/features/change-time-by-slider/change-time-by-slider';
+import { TimeSlider } from '@/features/time-slider/time-slider';
 import { $time, $timeFormat } from '@/entities/time';
 import { $selectedLocation, changeSelectedLocation } from '@/entities/location';
 import { DeleteLocationButton } from '@/features/delete-location';

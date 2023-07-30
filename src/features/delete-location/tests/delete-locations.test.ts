@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest';
 import { fork, allSettled } from 'effector';
 import worldCities from 'worldcities';
 import { $locations, $selectedLocation } from '@/entities/location';
-import { deleteCity } from '@/features/delete-location';
+import { deleteCity } from '../delete-location.model';
 
 const moscow = worldCities.getByName('moscow');
 const prague = worldCities.getByName('prague');
